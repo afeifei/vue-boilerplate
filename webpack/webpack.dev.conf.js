@@ -20,7 +20,7 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': config.dev.env.NODE_ENV
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurrenceOrderPlugin(),

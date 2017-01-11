@@ -5,8 +5,8 @@
   "author": "lushijie <lushijie1218@126.com>",
   "private": true,
   "scripts": {
-    "dev": "export NODE_ENV=development && node webpack/dev-server.js",
-    "build": "export NODE_ENV=production && node webpack/build.js",
+    "dev": "node webpack/dev.js",
+    "release": "node webpack/release.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
