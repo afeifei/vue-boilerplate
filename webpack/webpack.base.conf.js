@@ -1,9 +1,9 @@
+var IS_DEV = (process.env.NODE_ENV == 'development')
+
 var path = require('path')
 var config = require('./config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-
-var IS_DEV = (JSON.parse(JSON.stringify(process.env && process.env.NODE_ENV || 'development')) == 'development')
 var cssSourceMapDev = (IS_DEV && config.dev.cssSourceMap)
 var cssSourceMapProd = (!IS_DEV && config.release.productionSourceMap)
 var useCssSourceMap = cssSourceMapDev || cssSourceMapProd

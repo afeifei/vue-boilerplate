@@ -1,6 +1,6 @@
 require('./check-versions')()      //node npm 版本检查
 var config = require('./config')  //不同env下个性配置
-NODE_ENV = process.env.NODE_ENV = config.dev.env.NODE_ENV
+process.env.NODE_ENV = config.dev.env.NODE_ENV
 
 var path = require('path')
 var express = require('express')

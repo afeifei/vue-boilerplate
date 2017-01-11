@@ -4,7 +4,7 @@ var path = require('path')
 module.exports = {
   dev: {
     env: {
-      NODE_ENV: '"development"'
+      NODE_ENV: 'development'
     },
     port: 8080,
     assetsSubDirectory: 'static',
@@ -19,7 +19,7 @@ module.exports = {
   },
   release: {
     env: {
-      NODE_ENV: '"production"'
+      NODE_ENV: 'production'
     },
     index: path.resolve(__dirname, '../dist/index.html'),
     assetsRoot: path.resolve(__dirname, '../dist'),
