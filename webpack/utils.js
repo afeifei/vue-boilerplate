@@ -3,9 +3,7 @@ var config = require('./config')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 exports.assetsPath = function (_path) {
-  var assetsSubDirectory = process.env.NODE_ENV === 'production'
-    ? config.release.assetsSubDirectory
-    : config.dev.assetsSubDirectory
+  var assetsSubDirectory = 'static';
   return path.posix.join(assetsSubDirectory, _path)
 }
 

@@ -13,22 +13,17 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 
 module.exports = merge(baseWebpackConfig, {
   module: {
-    // css loader
-    loaders: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
+    loaders: utils.styleLoaders({ sourceMap: true })
   },
-  // eval-source-map is faster for development
-  devtool: '#eval-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV || 'development')
       }
     }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',

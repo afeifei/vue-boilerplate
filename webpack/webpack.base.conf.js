@@ -4,19 +4,19 @@ var path = require('path')
 var config = require('./config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-var cssSourceMapDev = (IS_DEV && config.dev.cssSourceMap)
-var cssSourceMapProd = (!IS_DEV && config.release.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
   entry: {
     app: './src/main.js'
   },
+  devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
   output: {
-    path: config.release.assetsRoot,
-    publicPath: IS_DEV ? config.dev.assetsPublicPath : config.release.assetsPublicPath,
-    filename: '[name].js'
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+    filename: IS_DEV ? '[name].js' : utils.assetsPath('js/[name].[chunkhash].js'),
+    chunkFilename: !IS_DEV && utils.assetsPath('js/[id].[chunkhash].js')
   },
+
   resolve: {
     extensions: ['', '.js', '.vue', '.json'],
     fallback: [path.join(__dirname, '../node_modules')],
@@ -88,7 +88,7 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
-    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    loaders: utils.cssLoaders({ sourceMap: IS_DEV ? true : false }),
     postcss: [
       require('autoprefixer')({
         browsers: ['last 2 versions']
