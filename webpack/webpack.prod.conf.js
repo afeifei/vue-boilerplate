@@ -7,31 +7,14 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
 var webpackConfig = merge(baseWebpackConfig, {
-  // module: {
-  //   loaders: utils.styleLoaders({
-  //     sourceMap: config.release.productionSourceMap,
-  //     extract: true
-  //   })
-  // },
-
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(config.release.env.NODE_ENV || 'production')
-      }
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist/index.html'),
       template: 'index.html',
@@ -67,13 +50,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunks: ['vendor']
     })
   ],
-
-  vue: {
-    loaders: utils.cssLoaders({
-      sourceMap: config.release.productionSourceMap,
-      extract: true
-    })
-  }
 })
 
 if (config.release.productionGzip) {

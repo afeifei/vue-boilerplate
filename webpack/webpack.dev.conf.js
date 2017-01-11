@@ -12,23 +12,14 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 })
 
 module.exports = merge(baseWebpackConfig, {
-  // module: {
-  //   loaders: utils.styleLoaders({ sourceMap: true })
-  // },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(config.dev.env.NODE_ENV || 'development')
-      }
-    }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new FriendlyErrors(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
       inject: true
-    }),
-    new FriendlyErrors()
+    })
   ]
 })
