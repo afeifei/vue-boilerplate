@@ -1,5 +1,4 @@
 var IS_DEV = (process.env.NODE_ENV == 'development')
-
 var path = require('path')
 var config = require('./config')
 var utils = require('./utils')
