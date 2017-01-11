@@ -12,9 +12,9 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 })
 
 module.exports = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: true })
-  },
+  // module: {
+  //   loaders: utils.styleLoaders({ sourceMap: true })
+  // },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

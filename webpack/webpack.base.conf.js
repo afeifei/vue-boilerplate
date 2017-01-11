@@ -81,7 +81,11 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
-      }
+      },
+      utils.styleLoaders({
+        sourceMap: IS_DEV ? true : config.release.productionSourceMap,
+        extract: IS_DEV? false : true
+      })
     ]
   },
   eslint: {

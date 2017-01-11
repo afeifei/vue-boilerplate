@@ -9,12 +9,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 var webpackConfig = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({
-      sourceMap: config.release.productionSourceMap,
-      extract: true
-    })
-  },
+  // module: {
+  //   loaders: utils.styleLoaders({
+  //     sourceMap: config.release.productionSourceMap,
+  //     extract: true
+  //   })
+  // },
 
   plugins: [
     new webpack.DefinePlugin({
