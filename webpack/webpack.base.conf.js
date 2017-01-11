@@ -10,7 +10,8 @@ module.exports = {
     app: './src/main.js'
   },
 
-  devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
+  //devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
+  devtool: 'inline-source-map',
 
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -108,8 +109,8 @@ module.exports = {
 
   vue: {
     loaders: utils.cssLoaders({
-      sourceMap: IS_DEV ? true : false,
-      extract: IS_DEV ? false : true
+      //sourceMap: IS_DEV ? true : false,
+      //extract: IS_DEV ? false : true
     }),
     postcss: [
       require('autoprefixer')({

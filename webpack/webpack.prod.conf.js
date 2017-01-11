@@ -9,11 +9,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var webpackConfig = merge(baseWebpackConfig, {
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist/index.html'),
@@ -45,10 +45,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       }
     }),
 
-    // extract webpack runtime and module manifest to its own file in order to
+    // extract webpack runtime and module common to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
+      name: 'common',
       chunks: ['vendor']
     })
   ],
