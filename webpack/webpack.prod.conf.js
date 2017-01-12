@@ -49,8 +49,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
-      chunks: ['vendor']
-    })
+      //chunks: ['vendor']
+    }),
+    function() {
+      this.plugin("done", function(stats){
+        console.log('done');
+        console.log(module.exports.entry)
+      });
+    }
   ],
 })
 

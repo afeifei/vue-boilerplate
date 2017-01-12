@@ -16,8 +16,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
-    filename: IS_DEV ? '[name].js' : utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: !IS_DEV && utils.assetsPath('js/[id].[chunkhash].js')
+    filename: IS_DEV ? '[name].js' : utils.assetsPath('js/[name].[chunkhash:8].js'),
+    // chunkFilename: !IS_DEV && utils.assetsPath('js/[id].[chunkhash:6].js')
+    chunkFilename: !IS_DEV && utils.assetsPath('js/[name].[chunkhash:8].js')
   },
 
   module: {
