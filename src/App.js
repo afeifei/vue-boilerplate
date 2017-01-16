@@ -17,11 +17,12 @@ import T32 from './components/T32'
 
 // 3. Create the router
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash', // history
   base: __dirname,
   routes: [
     {
       path: '/',
+      // redirect: 't1', //强制重定向
       component: T0
     },
     {
