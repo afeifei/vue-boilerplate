@@ -1,7 +1,8 @@
 <template>
   <div class="t2">
     <p>{{msg}}</p>
-    $route.params.id = {{ $route.params.id }}
+    <p>$route.params.id = {{ $route.params.id }}</p>
+    <p>$route.query.id = {{ $route.query.id }}</p>
   </div>
 </template>
 

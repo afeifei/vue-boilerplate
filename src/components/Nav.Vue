@@ -14,6 +14,7 @@
       <li><router-link to="/t3/t32">/t3/t32(嵌套路由)</router-link></li>
     </ul>
     <button v-on:click="handleClick1">路由跳转测试 /t3/t31</button>
+    <button v-on:click="handleClick2">路由跳转测试 /t2/1234</button>
     <router-view class="view"></router-view>
   </div>
 </template>
@@ -33,6 +34,7 @@ export default {
     },
     handleClick2: function (evt) {
       evt.preventDefault()
+      this.$router.push({path: '/t2', query: { id: '1234' }})
     }
   },
   created: function () {
