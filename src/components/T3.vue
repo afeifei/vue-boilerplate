@@ -1,24 +1,24 @@
 <template>
-  <div class="t2">
+  <div class="t3">
     <p>{{msg}}</p>
     $route.params.id = {{ $route.params.id }}
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 't2',
+  name: 't3',
   data () {
     return {
-      msg: 'This is T2'
+      msg: 'This is T3'
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.t2 p{
-  color: #964;
+.t3 p{
+  color: #064;
 }
 </style>

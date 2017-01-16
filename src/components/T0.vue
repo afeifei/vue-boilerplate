@@ -1,15 +1,15 @@
 <template>
-  <div class="hello">
+  <div class="t0">
     <p>{{ msg }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 't0',
   data () {
     return {
-      msg: 'This is Hello'
+      msg: 'This is T0'
     }
   }
 }
@@ -17,7 +17,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello p {
+.t0 p {
   color: #456;
 }
 </style>
