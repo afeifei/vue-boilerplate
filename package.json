@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "compression-webpack-plugin": "~0.3.2",
-    "vue": "^2.1.0"
+    "vue": "^2.1.0",
+    "vue-router": "~2.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
