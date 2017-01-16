@@ -7,7 +7,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/App.js'
   },
 
   //devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',

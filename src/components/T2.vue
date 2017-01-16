@@ -1,15 +1,15 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="t2">
+    <p>{{msg}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
+  name: 't2',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'This is T2'
     }
   }
 }
