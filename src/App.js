@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 2. Define route components
-import Hello from './components/T0'
+import T0 from './components/T0'
 import Nav from './components/Nav'
 import T1 from './components/T1'
 import T2 from './components/T2'
@@ -22,7 +22,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      component: Hello
+      component: T0
     },
     {
       path: '/t1',
@@ -37,11 +37,11 @@ const router = new VueRouter({
       component: T3,
       children: [
         {
-          path: 'sub1',
+          path: 't31',
           component: T31
         },
         {
-          path: 'sub2',
+          path: 't32',
           component: T32
         }
       ]

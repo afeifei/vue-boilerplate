@@ -9,9 +9,11 @@
       <li><router-link to="/t2/123">/t2/123(动态路由匹配)</router-link></li>
 
       <li><router-link to="/t3">/t3</router-link></li>
+      <li><router-link to="/t3/t000">/t3/t000(动态路由匹配)</router-link></li>
       <li><router-link to="/t3/t31">/t3/t31(嵌套路由)</router-link></li>
       <li><router-link to="/t3/t32">/t3/t32(嵌套路由)</router-link></li>
     </ul>
+    <button v-on:click="handleClick1">路由跳转测试 /t3/t31</button>
     <router-view class="view"></router-view>
   </div>
 </template>
@@ -22,6 +24,19 @@ export default {
     return {
       title: 'Basic Router'
     }
+  },
+  methods: {
+    handleClick1: function (evt) {
+      evt.preventDefault()
+      console.log(123123)
+      this.$router.push('/t3/t31')
+    },
+    handleClick2: function (evt) {
+      evt.preventDefault()
+    }
+  },
+  created: function () {
+    console.log(this.$router)
   }
 }
 </script>
