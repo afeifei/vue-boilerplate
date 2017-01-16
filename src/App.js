@@ -19,7 +19,7 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: Hello },
     { path: '/t1', component: T1 },
-    { path: '/t2', component: T2 }
+    { path: '/t2/:id', component: T2 }
   ]
 })
 

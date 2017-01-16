@@ -1,6 +1,7 @@
 <template>
   <div class="t2">
     <p>{{msg}}</p>
+    {{ $route.params.id }}
   </div>
 </template>
 
