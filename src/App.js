@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 // const Foo = { template: '<div>foo</div>' }
 // const Bar = { template: '<div>bar</div>' }
 import Hello from './components/Hello'
+import Nav from './components/Nav'
 import T1 from './components/T1'
 import T2 from './components/T2'
 
@@ -29,16 +30,7 @@ const router = new VueRouter({
 // Make sure to inject the router.
 // Route components will be rendered inside <router-view>.
 new Vue({
+  el: '#app',
   router,
-  template: `
-    <div id="app">
-      <h1>Basic</h1>
-      <ul>
-        <li><router-link to="/">/</router-link></li>
-        <li><router-link to="/t1">/t1</router-link></li>
-        <li><router-link to="/t2">/t2</router-link></li>
-      </ul>
-      <router-view class="view"></router-view>
-    </div>
-  `
+  render: h => h(Nav)
 }).$mount('#app')
