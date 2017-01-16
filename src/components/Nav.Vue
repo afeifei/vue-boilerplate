@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Basic</h1>
+    <h1>{{title}}</h1>
     <ul>
       <li><router-link to="/">/</router-link></li>
       <li><router-link to="/t1">/t1</router-link></li>
@@ -14,6 +14,7 @@
 export default {
   data () {
     return {
+      title: 'Basic Router'
     }
   }
 }
