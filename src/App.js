@@ -30,7 +30,6 @@ const router = new VueRouter({
 // Make sure to inject the router.
 // Route components will be rendered inside <router-view>.
 new Vue({
-  el: '#app',
   router,
   render: h => h(Nav)
 }).$mount('#app')
