@@ -7,9 +7,6 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // 2. Define route components
-// const Home = { template: '<div>home</div>' }
-// const Foo = { template: '<div>foo</div>' }
-// const Bar = { template: '<div>bar</div>' }
 import Hello from './components/Hello'
 import Nav from './components/Nav'
 import T1 from './components/T1'
