@@ -17,13 +17,22 @@ import T32 from './components/T32'
 
 // 3. Create the router
 const router = new VueRouter({
-  mode: 'hash', // history
+  mode: 'history',
   base: __dirname,
   routes: [
     {
       path: '/',
       // redirect: 't1', //强制重定向
-      component: T0
+      component: T0,
+      beforeEnter: (to, from, next) => {
+        console.log('t0', to)
+        console.log('from', from)
+        console.log('next', next)
+      },
+      beforeRouteLeave (to, from, next) {
+        // 导航离开该组件的对应路由时调用
+        // 可以访问组件实例 `this`
+      }
     },
     {
       path: '/t1',
