@@ -1,7 +1,8 @@
 <template>
   <div class="t0child block">
-    <h3 class="title">t0child</h3>
-    <p>子组件自定义prop = {{ propMsg }}</p>
+    <h3 class="title">{{ msg }}</h3>
+    <p>组件传递的prop = {{ propMsg }}</p>
+
     <button v-on:click="childButtonClick1"> {{counter1}}</button>
     <button v-on:click="childButtonClick2"> {{counter2}}</button>
   </div>
@@ -16,7 +17,8 @@ export default {
   data () {
     return {
       counter1: 0,
-      counter2: 0
+      counter2: 0,
+      msg: 'This is T0Child'
     }
   },
   methods: {

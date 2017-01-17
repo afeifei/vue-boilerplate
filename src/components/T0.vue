@@ -1,10 +1,12 @@
 <template>
   <div class="t0 block">
-    <h3 class="title">t0</h3>
-    <p v-bind:data-msg="msg">{{ msg }}</p>
-    <p>Total = {{ total }}</p>
-    <!-- 儿子传递emit到父亲 -->
-    <T0Child prop-msg="hello" v-on:childClick="handleChildClick"></T0Child>
+    <h3 class="title">{{ msg }}</h3>
+
+    <!-- 儿子emit到父亲 -->
+    <div>
+      <p>Total = {{ total }}</p>
+      <T0Child prop-msg="hello" v-on:childClick="handleChildClick"></T0Child>
+    </div>
   </div>
 </template>
 
