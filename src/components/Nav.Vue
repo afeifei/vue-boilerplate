@@ -27,16 +27,16 @@ export default {
     }
   },
   methods: {
-    handleClick1: function (evt) {
+    handleClick1 (evt) {
       evt.preventDefault()
       this.$router.push('/t3/t31')
     },
-    handleClick2: function (evt) {
+    handleClick2 (evt) {
       evt.preventDefault()
       this.$router.push({path: '/t2', query: { id: '1234' }})
     }
   },
-  created: function () {
+  created () {
     console.log('nav', this)
     // console.log(this.$router)
   }

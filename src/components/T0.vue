@@ -6,7 +6,7 @@
         {{ todo.text }}
       </li>
     </ul>
-    <Test propmsg="hello"></Test>
+    <Test prop-msg="hello"></Test>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     Test: Test
   },
   methods: {
-    handleClick: function (evt) {
+    handleClick (evt) {
       console.log(evt.target.innerText)
     }
   }
