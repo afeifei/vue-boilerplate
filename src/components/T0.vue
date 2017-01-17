@@ -2,12 +2,14 @@
   <div class="t0">
     <p v-if="seen" v-bind:data-msg="msg">{{ msg }}</p>
     <ul>
-      <li v-for="todo in todos" v-on:click="handleClick">
+      <li v-for="todo in todos" v-on:click="handleListClick">
         {{ todo.text }}
       </li>
     </ul>
     {{ total }}
-    <Test prop-msg="hello" v-on:increment="incrementTotal"></Test>
+
+    <!-- 儿子传递emit到父亲 -->
+    <Test prop-msg="hello" v-on:childClick="handleChildClick"></Test>
   </div>
 </template>
 
@@ -31,11 +33,11 @@ export default {
     Test: Test
   },
   methods: {
-    handleClick (evt) {
+    handleListClick (evt) {
       console.log(evt.target.innerText)
     },
-    incrementTotal () {
-      this.total += 1;
+    handleChildClick (evt) {
+      console.log(evt)
     }
   }
 }

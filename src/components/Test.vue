@@ -1,7 +1,7 @@
 <template>
   <div class="test">
     <p v-if="seen" v-bind:data-msg="msg">{{ msg }}</p>
-    <button v-on:click="clickTest">{{ propMsg }}</button>
+    <button v-on:click="childButtonClick">{{ propMsg }}</button>
   </div>
 </template>
 
@@ -19,13 +19,10 @@ export default {
     }
   },
   methods: {
-    clickTest () {
+    childButtonClick (evt) {
       this.counter += 1
-      this.$emit('increment')
+      this.$emit('childClick', evt)
     }
-  },
-  created () {
-    console.log('Test', this.propMsg)
   }
 }
 </script>
