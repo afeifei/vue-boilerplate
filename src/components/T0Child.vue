@@ -5,6 +5,8 @@
 
     <button v-on:click="childButtonClick1"> {{counter1}}</button>
     <button v-on:click="childButtonClick2"> {{counter2}}</button>
+
+    <button v-on:click="childButtonClick3"> Bus总线测试 </button>
   </div>
 </template>
 
@@ -29,7 +31,13 @@ export default {
     childButtonClick2 (evt) {
       this.counter2 += 1
       this.$emit('childClick', evt)
+    },
+    childButtonClick3 (evt) {
+      this.$root.bus.$emit('busEventTest', 'This is event from T0Child !')
     }
+  },
+  mounted () {
+    console.log('T0Child\'s parent msg =', this.$parent.$data.msg)
   }
 }
 </script>

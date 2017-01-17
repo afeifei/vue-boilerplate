@@ -10,6 +10,8 @@ Vue.use(VueRouter)
 new Vue({
   el: '#app',
   router,
-  bus: new Vue(),
+  data: {
+    bus: new Vue(),
+  },
   render: h => h(Layout)
 })

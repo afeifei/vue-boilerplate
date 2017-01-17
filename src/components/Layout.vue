@@ -40,6 +40,12 @@ export default {
       evt.preventDefault()
       this.$router.push({path: '/t2', query: { id: '1234' }})
     }
+  },
+  mounted () {
+    // Bus总线测试
+    this.$root.$data.bus.$on('busEventTest', (arg) => {
+      alert(arg)
+    })
   }
 }
 </script>

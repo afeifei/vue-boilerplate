@@ -28,9 +28,6 @@ export default {
     handleChildClick (evt) {
       this.total += 1
     }
-  },
-  mounted () {
-
   }
 }
 </script>
