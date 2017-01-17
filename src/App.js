@@ -8,6 +8,8 @@ import './app.css'
 Vue.use(VueRouter)
 
 new Vue({
+  el: '#app',
   router,
+  bus: new Vue(),
   render: h => h(Layout)
-}).$mount('#app')
+})

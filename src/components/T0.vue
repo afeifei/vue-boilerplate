@@ -29,6 +29,8 @@ export default {
       console.log(evt)
       this.total += 1
     }
+  },
+  mounted () {
   }
 }
 </script>

@@ -40,9 +40,6 @@ export default {
       evt.preventDefault()
       this.$router.push({path: '/t2', query: { id: '1234' }})
     }
-  },
-  created () {
-
   }
 }
 </script>
