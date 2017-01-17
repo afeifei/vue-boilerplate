@@ -57,5 +57,3 @@ new Vue({
   router,
   render: h => h(Nav)
 }).$mount('#app')
-
-// console.log('rootVm', rootVm)

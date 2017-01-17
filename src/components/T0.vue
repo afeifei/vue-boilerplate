@@ -6,7 +6,8 @@
         {{ todo.text }}
       </li>
     </ul>
-    <Test prop-msg="hello"></Test>
+    {{ total }}
+    <Test prop-msg="hello" v-on:increment="incrementTotal"></Test>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
   name: 't0',
   data () {
     return {
+      total: 0,
       msg: 'This is T0',
       seen: true,
       todos: [
@@ -31,6 +33,9 @@ export default {
   methods: {
     handleClick (evt) {
       console.log(evt.target.innerText)
+    },
+    incrementTotal () {
+      this.total += 1;
     }
   }
 }
