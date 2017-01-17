@@ -1,6 +1,6 @@
 <template>
-  <div class="t1">
-    <p>{{msg}}</p>
+  <div class="t1 block">
+    <h3 class="title">{{msg}}</h3>
   </div>
 </template>
 
@@ -17,7 +17,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.t1 p {
-  color: #678;
-}
+
 </style>

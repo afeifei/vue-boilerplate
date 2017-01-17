@@ -15,6 +15,8 @@ import T3 from './components/T3'
 import T31 from './components/T31'
 import T32 from './components/T32'
 
+import './app.css'
+
 // 3. Create the router
 const router = new VueRouter({
   mode: 'history',

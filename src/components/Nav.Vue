@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <h1>{{title}}</h1>
+  <div id="app" class="block">
+    <h3 class="title">{{title}}</h3>
     <ul>
       <li><router-link to="/">/</router-link></li>
       <li><router-link to="/t1">/t1</router-link></li>
@@ -9,12 +9,12 @@
       <li><router-link to="/t2/123">/t2/123(动态路由匹配)</router-link></li>
 
       <li><router-link to="/t3">/t3</router-link></li>
-      <li><router-link to="/t3/t000">/t3/t000(动态路由匹配)</router-link></li>
       <li><router-link to="/t3/t31">/t3/t31(嵌套路由)</router-link></li>
-      <li><router-link to="/t3/t32">/t3/t32(嵌套路由)</router-link></li>
     </ul>
-    <button v-on:click="handleClick1">路由跳转测试 /t3/t31</button>
-    <button v-on:click="handleClick2">路由跳转测试 /t2/1234</button>
+    <p>
+      <button v-on:click="handleClick2">路由跳转测试 /t2?id=1234</button>
+      <button v-on:click="handleClick1">路由跳转测试 /t3/t32</button>
+    </p>
     <router-view class="view"></router-view>
   </div>
 </template>
@@ -23,13 +23,13 @@
 export default {
   data () {
     return {
-      title: 'Basic Router'
+      title: 'This is Nav'
     }
   },
   methods: {
     handleClick1 (evt) {
       evt.preventDefault()
-      this.$router.push('/t3/t31')
+      this.$router.push('/t3/t32')
     },
     handleClick2 (evt) {
       evt.preventDefault()
@@ -42,3 +42,7 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

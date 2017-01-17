@@ -1,7 +1,7 @@
 <template>
-  <div class="t3">
-    <p>{{msg}}</p>
-    $route.params.id = {{ $route.params.id }}
+  <div class="t3 block">
+    <h3 class="title">{{msg}}</h3>
+    <p>$route.params.id = {{ $route.params.id }}</p>
     <router-view></router-view>
   </div>
 </template>

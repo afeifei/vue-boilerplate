@@ -1,6 +1,6 @@
 <template>
-  <div class="t32">
-    <p>{{msg}}</p>
+  <div class="t32 block">
+    <h3 class="title">{{msg}}</h3>
   </div>
 </template>
 
@@ -16,7 +16,5 @@ export default {
 </script>
 
 <style scoped>
-.t32 p{
-  color: #064;
-}
+
 </style>

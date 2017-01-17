@@ -1,6 +1,6 @@
 <template>
-  <div class="t2">
-    <p>{{msg}}</p>
+  <div class="t2 block">
+    <h3 class="title">{{msg}}</h3>
     <p>$route.params.id = {{ $route.params.id }}</p>
     <p>$route.query.id = {{ $route.query.id }}</p>
   </div>
@@ -19,7 +19,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.t2 p{
-  color: #964;
-}
+
 </style>

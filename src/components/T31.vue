@@ -1,6 +1,6 @@
 <template>
-  <div class="t31">
-    <p>{{msg}}</p>
+  <div class="t31 block">
+    <h3 class="title">{{msg}}</h3>
   </div>
 </template>
 
@@ -16,7 +16,5 @@ export default {
 </script>
 
 <style scoped>
-.t31 p{
-  color: #064;
-}
+
 </style>
