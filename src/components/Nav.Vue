@@ -29,7 +29,6 @@ export default {
   methods: {
     handleClick1: function (evt) {
       evt.preventDefault()
-      console.log(123123)
       this.$router.push('/t3/t31')
     },
     handleClick2: function (evt) {
@@ -38,7 +37,8 @@ export default {
     }
   },
   created: function () {
-    console.log(this.$router)
+    console.log('nav', this)
+    // console.log(this.$router)
   }
 }
 </script>

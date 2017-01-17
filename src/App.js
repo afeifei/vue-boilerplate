@@ -23,16 +23,7 @@ const router = new VueRouter({
     {
       path: '/',
       // redirect: 't1', //强制重定向
-      component: T0,
-      beforeEnter: (to, from, next) => {
-        console.log('t0', to)
-        console.log('from', from)
-        console.log('next', next)
-      },
-      beforeRouteLeave (to, from, next) {
-        // 导航离开该组件的对应路由时调用
-        // 可以访问组件实例 `this`
-      }
+      component: T0
     },
     {
       path: '/t1',
@@ -66,3 +57,5 @@ new Vue({
   router,
   render: h => h(Nav)
 }).$mount('#app')
+
+// console.log('rootVm', rootVm)
