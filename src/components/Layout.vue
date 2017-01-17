@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'Layout',
   data () {
     return {
       title: 'This is Layout'

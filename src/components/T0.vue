@@ -1,5 +1,5 @@
 <template>
-  <div class="t0 block">
+  <div class="block">
     <h3 class="title">{{ msg }}</h3>
 
     <!-- 儿子emit到父亲 -->
@@ -14,7 +14,7 @@
 import T0Child from './T0Child'
 
 export default {
-  name: 't0',
+  name: 'T0',
   data () {
     return {
       total: 0,
@@ -35,8 +35,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.t0 {
-  border: 1px solid #056;
-  padding: 20px;
-}
+
 </style>

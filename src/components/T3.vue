@@ -1,5 +1,5 @@
 <template>
-  <div class="t3 block">
+  <div class="block">
     <h3 class="title">{{msg}}</h3>
     <p>$route.params.id = {{ $route.params.id }}</p>
     <router-view></router-view>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 't3',
+  name: 'T3',
   data () {
     return {
       msg: 'This is T3'
@@ -18,7 +18,5 @@ export default {
 </script>
 
 <style scoped>
-.t3 p{
-  color: #064;
-}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="t0child block">
+  <div class="block">
     <h3 class="title">{{ msg }}</h3>
     <p>组件传递的prop = {{ propMsg }}</p>
 
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 't0child',
+  name: 'T0Child',
   props: {
     propMsg: [String, Number]
   },

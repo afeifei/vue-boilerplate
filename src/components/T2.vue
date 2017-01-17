@@ -1,5 +1,5 @@
 <template>
-  <div class="t2 block">
+  <div class="block">
     <h3 class="title">{{msg}}</h3>
     <p>$route.params.id = {{ $route.params.id }}</p>
     <p>$route.query.id = {{ $route.query.id }}</p>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 't2',
+  name: 'T2',
   data () {
     return {
       msg: 'This is T2'
