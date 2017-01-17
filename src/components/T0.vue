@@ -25,7 +25,7 @@ export default {
     T0Child: T0Child
   },
   methods: {
-    handleChildClick (evt) {
+    handleChildClick () {
       this.total += 1
     }
   }

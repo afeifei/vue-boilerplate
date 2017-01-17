@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-01-17 14:37:20
+* @Last Modified time: 2017-01-17 15:49:47
 */
 import VueRouter from 'vue-router'
 
@@ -48,4 +48,4 @@ let router = new VueRouter({
   ]
 })
 
-export default router;
+export default router

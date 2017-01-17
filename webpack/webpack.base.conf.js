@@ -7,7 +7,7 @@ var projectRoot = path.resolve(__dirname, '../')
 
 module.exports = {
   entry: {
-    app: './src/App.js'
+    app: './src/app.js'
   },
 
   //devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
@@ -23,22 +23,22 @@ module.exports = {
 
   module: {
     preLoaders: [
-      // {
-      //   test: /\.vue$/,
-      //   loader: 'eslint',
-      //   include: [
-      //     path.join(projectRoot, 'src')
-      //   ],
-      //   exclude: /node_modules/
-      // },
-      // {
-      //   test: /\.js$/,
-      //   loader: 'eslint',
-      //   include: [
-      //     path.join(projectRoot, 'src')
-      //   ],
-      //   exclude: /node_modules/
-      // }
+      {
+        test: /\.vue$/,
+        loader: 'eslint',
+        include: [
+          path.join(projectRoot, 'src')
+        ],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loader: 'eslint',
+        include: [
+          path.join(projectRoot, 'src')
+        ],
+        exclude: /node_modules/
+      }
     ],
     loaders: [
       {
@@ -110,8 +110,9 @@ module.exports = {
 
   vue: {
     loaders: utils.cssLoaders({
-      //sourceMap: IS_DEV ? true : false,
-      //extract: IS_DEV ? false : true
+      sourceMap: true
+      //sourceMap: IS_DEV ? true : false
+      // extract: IS_DEV ? false : true
     }),
     postcss: [
       require('autoprefixer')({

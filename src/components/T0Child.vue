@@ -32,7 +32,7 @@ export default {
       this.counter2 += 1
       this.$emit('childClick', evt)
     },
-    childButtonClick3 (evt) {
+    childButtonClick3 () {
       this.$root.bus.$emit('busEventTest', 'This is event from T0Child !')
     }
   },

@@ -11,7 +11,7 @@ new Vue({
   el: '#app',
   router,
   data: {
-    bus: new Vue(),
+    bus: new Vue()
   },
   render: h => h(Layout)
 })

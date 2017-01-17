@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:20:26
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-01-17 14:25:11
+* @Last Modified time: 2017-01-17 15:43:56
 */
 .block {
   border: 1px solid #964;
@@ -10,4 +10,7 @@
 }
 .title {
   text-align: center;
+}
+.router-link-active {
+  color: #a10;
 }
