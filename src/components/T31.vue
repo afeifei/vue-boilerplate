@@ -1,6 +1,7 @@
 <template>
   <div class="block">
     <h3 class="title">{{msg}}</h3>
+    <slot name="CPU"></solt>
   </div>
 </template>
 

@@ -5,7 +5,10 @@
     <!-- 儿子emit到父亲 -->
     <div>
       <p>Total = {{ total }}</p>
-      <T0Child prop-msg="hello" v-on:childClick="handleChildClick" ref="T0Child"></T0Child>
+      <T0Child prop-msg="hello" v-on:childClick="handleChildClick" ref="T0Child">
+        <!-- slot分发 -->
+        <p slot="cpu">英特尔</p>
+      </T0Child>
     </div>
   </div>
 </template>

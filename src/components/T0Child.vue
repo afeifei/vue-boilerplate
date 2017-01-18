@@ -9,6 +9,9 @@
     <button v-on:click="childButtonClick3"> Bus总线测试 </button>
 
     <button v-on:click="childButtonClick4"> Refs测试 </button>
+    <slot name="cpu">
+      <p>酷睿</p>
+    </slot>
   </div>
 </template>
 
