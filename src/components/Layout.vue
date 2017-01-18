@@ -42,7 +42,7 @@ export default {
     }
   },
   mounted () {
-    // Bus总线测试
+    // 使用Bus总线监听孙子组件的事件
     this.$root.$data.bus.$on('busEventTest', (arg) => {
       alert(arg)
     })

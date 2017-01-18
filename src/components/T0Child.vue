@@ -1,5 +1,5 @@
 <template>
-  <div class="block">
+  <div class="block" ref="pp">
     <h3 class="title">{{ msg }}</h3>
     <p>组件传递的prop = {{ propMsg }}</p>
 
@@ -7,6 +7,8 @@
     <button v-on:click="childButtonClick2"> {{counter2}}</button>
 
     <button v-on:click="childButtonClick3"> Bus总线测试 </button>
+
+    <button v-on:click="childButtonClick4"> Refs测试 </button>
   </div>
 </template>
 
@@ -32,8 +34,12 @@ export default {
       this.counter2 += 1
       this.$emit('childClick', evt)
     },
+    // 使用Bus总线触发相应的事件
     childButtonClick3 () {
       this.$root.bus.$emit('busEventTest', 'This is event from T0Child !')
+    },
+    childButtonClick4 (evt) {
+      this.$emit('childClick4', evt)
     }
   },
   mounted () {

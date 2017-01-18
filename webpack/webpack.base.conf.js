@@ -104,9 +104,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
   ],
 
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  },
+  // eslint: {
+  //   formatter: require('eslint-friendly-formatter')
+  // },
 
   vue: {
     loaders: utils.cssLoaders({

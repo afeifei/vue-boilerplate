@@ -28,7 +28,7 @@ module.exports = {
     'eqeqeq':                       'warn',     // 要求使用 === 和 !==
     'no-extra-semi':                'warn',     // 禁止不必要的分号
     'comma-dangle':                 ["error", "never"], // 禁用拖尾逗号
-    'indent':                       'warn',     // 强制使用一致的缩进
+    'indent':                       ['warn', 2],     // 强制使用一致的缩进
     'no-eval':                      'error',    // 禁用 eval()
     'no-redeclare':                 'error',    // 禁止多次声明同一变量'
     'no-cond-assign':               'error',    // 禁止条件表达式中出现赋值操作符
