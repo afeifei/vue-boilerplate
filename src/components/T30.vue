@@ -1,17 +1,15 @@
 <template>
   <div class="block">
     <h3 class="title">{{msg}}</h3>
-    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'T3',
+  name: 'T30',
   data () {
     return {
-      msg: 'This is T3'
+      msg: 'This is T30'
     }
   }
 }

@@ -14,8 +14,8 @@
 
     <!-- 路由跳转测试 -->
     <p>
-      <button v-on:click="handleClick2">路由跳转测试 /t2?id=1234</button>
-      <button v-on:click="handleClick1">路由跳转测试 /t3/t32</button>
+      <button v-on:click="handleClick1">路由跳转测试 /t2?id=1234</button>
+      <button v-on:click="handleClick2">路由跳转测试 /t3/t32</button>
     </p>
 
     <!-- 路由组件的容器 -->
@@ -34,11 +34,11 @@ export default {
   methods: {
     handleClick1 (evt) {
       evt.preventDefault()
-      this.$router.push('/t3/t32')
+      this.$router.push({path: '/t2', query: { id: '1234' }})
     },
     handleClick2 (evt) {
       evt.preventDefault()
-      this.$router.push({path: '/t2', query: { id: '1234' }})
+      this.$router.push('/t3/t32')
     }
   },
   mounted () {

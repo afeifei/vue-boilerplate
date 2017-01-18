@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-01-17 15:49:47
+* @Last Modified time: 2017-01-18 11:51:31
 */
 import VueRouter from 'vue-router'
 
@@ -10,6 +10,7 @@ import T0 from './components/T0'
 import T1 from './components/T1'
 import T2 from './components/T2'
 import T3 from './components/T3'
+import T30 from './components/T30'
 import T31 from './components/T31'
 import T32 from './components/T32'
 
@@ -32,9 +33,13 @@ let router = new VueRouter({
       component: T2
     },
     {
-      path: '/t3/:id?',
+      path: '/t3',
       component: T3,
       children: [
+        {
+          path: '',
+          component: T30
+        },
         {
           path: 't31',
           component: T31
