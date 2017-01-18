@@ -8,6 +8,8 @@
       <T0Child prop-msg="hello" v-on:childClick="handleChildClick" ref="T0Child">
         <!-- slot分发 -->
         <p slot="cpu">英特尔</p>
+        <p>匿名slot实例1</p>
+        <p>匿名slot实例2</p>
       </T0Child>
     </div>
   </div>
