@@ -2,18 +2,12 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-26 16:55:45
+* @Last Modified time: 2017-05-26 18:04:37
 */
 import VueRouter from 'vue-router';
-import Vue from 'vue';
-
-// 全局自定义过滤器
-Vue.filter('my-filter', function(value, suffix) {
-  return value + suffix;
-});
 
 // 模块1 基础
-import M1 from './components/M1';
+import M1 from './components/m1';
 
 // 模块2, 路由切换与自路由
 import M2 from './components/m2';
