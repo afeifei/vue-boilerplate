@@ -1,50 +1,31 @@
 <template>
   <div id="app" class="block">
     <h3 class="title">{{title}}</h3>
-
-    <!-- 路由测试 -->
-    <ul>
-      <li><router-link to="/">/</router-link></li>
-      <li><router-link to="/t1">/t1</router-link></li>
-      <li><router-link to="/t2">/t2</router-link></li>
-      <li><router-link to="/t2/123">/t2/123(动态路由匹配)</router-link></li>
-      <li><router-link to="/t3">/t3</router-link></li>
-      <li><router-link to="/t3/t31">/t3/t31(嵌套路由)</router-link></li>
-    </ul>
-
-    <!-- 路由跳转测试 -->
-    <p>
-      <button v-on:click="handleClick1">路由跳转测试 /t2?id=1234</button>
-      <button v-on:click="handleClick2">路由跳转测试 /t3/t32</button>
-    </p>
-
+    <navbar></navbar>
     <!-- 路由组件的容器 -->
     <router-view class="view"></router-view>
   </div>
 </template>
 
 <script>
+import navbar from 'components/common/navbar';
+
 export default {
   name: 'Layout',
+  components: {
+    navbar
+  },
   data () {
     return {
-      title: 'This is Layout'
+      title: 'Welcome to VUE\'s World'
     }
   },
   methods: {
-    handleClick1 (evt) {
-      evt.preventDefault()
-      this.$router.push({path: '/t2', query: { id: '1234' }})
-    },
-    handleClick2 (evt) {
-      evt.preventDefault()
-      this.$router.push('/t3/t32')
-    }
   },
   mounted () {
     // 使用Bus总线监听孙子组件的事件
-    this.$root.$data.bus.$on('busEventTest', (arg) => {
-      alert(arg)
+    this.$root.$data.bus.$on('busM41Btn2', (evt) => {
+      console.log('Root监听到总线事件', evt);
     })
   }
 }

@@ -1,7 +1,6 @@
 <template>
   <div class="block">
     <h3 class="title">{{ msg }}</h3>
-
     <!-- 儿子emit到父亲 -->
     <div>
       <p>Total = {{ total }}</p>

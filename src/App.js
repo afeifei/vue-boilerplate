@@ -1,16 +1,15 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Layout from './components/Layout'
-import router from './router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import './assets/css/pure.css';
+// import $ from './assets/js/lib/jquery.js';
+import Layout from './components/Layout';
+import router from './router';
+import './app.css';
 
-import './assets/css/pure.css'
-import $ from './assets/js/lib/jquery.js'
-import './app.css'
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 new Vue({
-  el: '#app',
+  el: '#root', // #root 元素会被replace
   router,
   data: {
     bus: new Vue()
@@ -18,4 +17,3 @@ new Vue({
   render: h => h(Layout)
 })
 
-console.log($)
