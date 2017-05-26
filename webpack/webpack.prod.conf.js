@@ -9,11 +9,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var webpackConfig = merge(baseWebpackConfig, {
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
     new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist/index.html'),
@@ -23,8 +23,6 @@ var webpackConfig = merge(baseWebpackConfig, {
         removeComments: true,
         //collapseWhitespace: true,
         removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
