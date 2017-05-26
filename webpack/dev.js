@@ -1,4 +1,5 @@
-require('./check-versions')()      //node npm 版本检查
+//  "node": ">= 4.0.0", "npm": ">= 3.0.0"
+
 var config = require('./config')  //不同env下个性配置
 // process.env.NODE_ENV = config.dev.env.NODE_ENV
 process.env.NODE_ENV = 'development'
@@ -9,7 +10,6 @@ var webpack = require('webpack')
 var opn = require('opn')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = require('./webpack.dev.conf')
-
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
