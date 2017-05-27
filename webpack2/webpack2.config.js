@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 17:09:17
+* @Last Modified time: 2017-05-27 17:15:48
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -28,7 +28,8 @@ module.exports = function(env) {
     output: {
       path: `${ROOT_PATH}/dist/static`,
       publicPath: '/static/', //dev-server
-      filename: '[name].bundle.js',
+      // filename: '[name].bundle.js',
+      filename: '[name].[hash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
     resolve: {
@@ -213,7 +214,7 @@ module.exports = function(env) {
       PLUGINS.transferWebpackPluginConf([{from: 'static'}], {root: ROOT_PATH}),
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
-        filename: "vendor.bundle.js",
+        filename: "vendor.[hash:8].js",
         minChunks: function (module, count) {
           return (
             module.resource &&
@@ -223,14 +224,14 @@ module.exports = function(env) {
         }
       }),
       // new ExtractTextPlugin("vue.style.bundle.css"),
-      PLUGINS.uglifyJsPluginConf(),
+      // PLUGINS.uglifyJsPluginConf(),
       PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
-      PLUGINS.compressionWebpackPluginConf(),
+      // PLUGINS.compressionWebpackPluginConf(),
       PLUGINS.commonsChunkPluginConf({
         // extract webpack runtime and module common to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated
         name: 'common',
-        filename: "common.bundle.js",
+        filename: "common.[hash:8].js",
       })
     ]
   }
