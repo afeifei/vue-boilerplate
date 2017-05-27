@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 16:48:53
+* @Last Modified time: 2017-05-27 17:09:17
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -16,7 +16,7 @@ const STATIC_PATH = path.join(ROOT_PATH, 'static');
 const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 const IS_DEV = (argv.env === 'development');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
@@ -208,42 +208,24 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      PLUGINS.hotModuleReplacementPluginConf(),
       PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
-
-      // split vendor js into its own file
-      PLUGINS.commonsChunkPluginConf({
-        name: 'vendor',
-        minChunks: function (module, count) {
-          // any required modules inside node_modules are extracted to vendor
-          return (
-            module.resource &&
-            /\.js$/.test(module.resource) &&
-            module.resource.indexOf(
-              path.join(__dirname, '../node_modules')
-            ) === 0
-          )
-        }
-      }),
+      PLUGINS.transferWebpackPluginConf([{from: 'static'}], {root: ROOT_PATH}),
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
         filename: "vendor.bundle.js",
         minChunks: function (module, count) {
-          // any required modules inside node_modules are extracted to vendor
           return (
             module.resource &&
             /\.js$/.test(module.resource) &&
-            module.resource.indexOf(
-              path.join(__dirname, '../node_modules')
-            ) === 0
+            module.resource.indexOf(path.join(ROOT_PATH, 'node_modules')) === 0
           )
         }
       }),
-      PLUGINS.hotModuleReplacementPluginConf(),
-      // Pconf.compressionWebpackPluginConf(),
       // new ExtractTextPlugin("vue.style.bundle.css"),
-      PLUGINS.friendlyErrorsPluginConf(),
       PLUGINS.uglifyJsPluginConf(),
       PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
+      PLUGINS.compressionWebpackPluginConf(),
       PLUGINS.commonsChunkPluginConf({
         // extract webpack runtime and module common to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated

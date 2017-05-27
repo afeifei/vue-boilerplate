@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 16:48:48
+* @Last Modified time: 2017-05-27 17:02:22
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -17,7 +17,7 @@ const ObjectAssign = Object.assign;
 module.exports = {
   //为打包之后的各个文件添加说明头部
   'bannerPluginConf': function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       banner: 'This file is last built at ' + new Date(),
       raw: true,
       entryOnly: true
@@ -28,7 +28,7 @@ module.exports = {
   //下次打包清除上一次打包文件
   'cleanPluginConf': function(paths, options) {
     paths = paths || ['dist'];
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       root: __dirname,
       verbose: true,
       dry: false
@@ -38,7 +38,7 @@ module.exports = {
 
   // gzip
   compressionWebpackPluginConf: function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({} ,{
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
@@ -52,7 +52,7 @@ module.exports = {
 
   //提取common文件模块
   'commonsChunkPluginConf': function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       //1.如果不存在 chunk 为 common 的模块，则从所有模块提取公共到 common 这一公共模块;
       //2.如果存在 chunk 的 name 为 common 的模块，
       //则以common 为基础，提取其他模块和common相同的部分并合并到 common 模块
@@ -81,7 +81,7 @@ module.exports = {
       return obj;
     }
     options = stringifyString(options);
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
@@ -91,7 +91,7 @@ module.exports = {
 
   // dll
   'dllPluginConf': function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       path: path.join(__dirname, 'manifest.json'),
       name: '[name]_[chunkhash]',
       context: __dirname,
@@ -105,7 +105,7 @@ module.exports = {
 
   //常用并且不常变化的打包成dll引入
   'dllReferencePluginConf': function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       context: __dirname,
       manifest: require('./manifest.json'),
     }, options);
@@ -171,15 +171,18 @@ module.exports = {
   },
 
   //文件拷贝插件
-  'transferWebpackPluginConf': function(froms, cwd, options) {
-    froms = froms || [];
-    cwd = cwd || path.join(options.root || __dirname, 'dist');
-    return new TransferWebpackPlugin(froms, cwd);
+  'transferWebpackPluginConf': function(transfer, options) {
+    options = options || {};
+    // transfer like
+    // [
+    //   {from: 'i18n', to: 'i18n'} // to is dir in the final dist
+    // ]
+    return new TransferWebpackPlugin(transfer, options.root||__dirname);
   },
 
   //js压缩组件
   'uglifyJsPluginConf': function(options) {
-    options = ObjectAssign({
+    options = ObjectAssign({}, {
       //sourceMap: true,
       compress: {
         warnings: false
