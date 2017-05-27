@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .test {
+    color: red;
+  }
 </style>

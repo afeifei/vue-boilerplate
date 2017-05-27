@@ -2,11 +2,12 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:54:52
+* @Last Modified time: 2017-05-27 19:30:20
 */
 let webpack = require('webpack');
 let path = require('path');
 let argv = require('yargs').argv;
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 let OPTIONS = require('./webpack2.options.js');
 let PLUGINS = require('./webpack2.plugins.js');
 const ROOT_PATH = path.join(__dirname, '..');
@@ -67,6 +68,10 @@ module.exports = function(env) {
           loader: 'vue-loader',
           options: {
             loaders: {
+              css: ExtractTextPlugin.extract({
+                fallbackLoader: 'vue-style-loader?sourceMap=false',
+                loader: 'css-loader?minimize=true'
+              }),
               scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
             }
@@ -198,11 +203,18 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      // 热加载
       IS_DEV ? PLUGINS.hotModuleReplacementPluginConf() : PLUGINS.noopPluginConf(),
+
+      // 清理文件
       PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
-      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.transferWebpackPluginConf([{
-        from: 'static', to: '../../static' // to 默认为 output.path
-      }], {root: ROOT_PATH}),
+
+      // 静态资源文件拷贝
+      // IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.transferWebpackPluginConf([{
+      //   from: 'static', to: '../../static' // to 默认为 output.path
+      // }], {root: ROOT_PATH}),
+
+      // vendor提取
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
         filename: "vendor.[hash:8].js",
@@ -214,8 +226,18 @@ module.exports = function(env) {
           )
         }
       }),
+
+      // css提取
+      // IS_DEV ? PLUGINS.noopPluginConf() :
+      PLUGINS.extractTextPluginConf('style.bundle.css'),
+
+      // 文件压缩
       IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.uglifyJsPluginConf(),
+
+      // 环境变量注入
       PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
+
+      // common 提取
       PLUGINS.commonsChunkPluginConf({
         // extract webpack runtime and module common to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated
