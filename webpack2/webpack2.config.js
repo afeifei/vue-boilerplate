@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 11:46:37
+* @Last Modified time: 2017-05-27 14:13:13
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -10,14 +10,14 @@ let argv = require('yargs').argv;
 let OPTIONS = require('./webpack2.options.js');
 let PLUGINS = require('./webpack2.plugins.js');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
 const ROOT_PATH = path.join(__dirname, '..');
 const SRC_PATH = path.join(ROOT_PATH, 'src');
 const STATIC_PATH = path.join(ROOT_PATH, 'static');
 const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 const IS_DEV = (argv.env === 'development');
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
   let workflow =  {
@@ -31,15 +31,38 @@ module.exports = function(env) {
       filename: '[name].bundle.js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
+    resolve: {
+      extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
+      alias: {
+        'static': STATIC_PATH,
+        'assets': path.join(SRC_PATH, 'assets'),
+        'components': path.join(SRC_PATH, 'components'),
+      }
+    },
+    devServer: {
+      stats: {
+        cached: false,
+        colors: true
+      },
+      hot: true,
+      inline: true,
+      compress: true,
+      contentBase: '.',
+      port: 5050,
+      host: '0.0.0.0',
+      headers: {
+        "X-WEB-SERVER": "webpack-dev-server"
+      }
+    },
     module: {
       rules: [
         // eslint 校验
         {
-          test: /\.(j|e)s$|\.vue$/,
           enforce: 'pre',
+          test: /\.(j|e)s$|\.vue$/,
+          loader: 'eslint-loader',
           include: [SRC_PATH],
           exclude: [MODULES_PATH],
-          loader: 'eslint-loader'
         },
 
         // vue 解析
@@ -47,16 +70,16 @@ module.exports = function(env) {
           test: /\.vue$/,
           loader: 'vue-loader',
           options: {
-            extractCSS: true,
-            loaders: {
-              // css: ExtractTextPlugin.extract({
-              //   use: 'css-loader',
-              //   fallback: 'vue-style-loader',
-              //   // publicPath:
-              // }),
-              scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
-            }
+            // extractCSS: true,
+            // loaders: {
+            //   css: ExtractTextPlugin.extract({
+            //     use: 'css-loader',
+            //     fallback: 'vue-style-loader',
+            //     // publicPath:
+            //   }),
+            //   scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+            //   sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+            // }
           }
         },
 
@@ -78,9 +101,10 @@ module.exports = function(env) {
         {
           test: /\.css$/,
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: IS_DEV ? true : false, minimize: true }
             }
           ]
         },
@@ -89,6 +113,7 @@ module.exports = function(env) {
         {
           test: /\.less$/,
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -104,6 +129,7 @@ module.exports = function(env) {
         {
           test: /\.sass$/,
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -121,6 +147,7 @@ module.exports = function(env) {
         {
           test: /\.stylus$/,
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -138,6 +165,7 @@ module.exports = function(env) {
         {
           test: /\.scss$/,
           use: [
+            'style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -179,41 +207,18 @@ module.exports = function(env) {
         }
       ]
     },
-    resolve: {
-      extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
-      alias: {
-        'static': STATIC_PATH,
-        'assets': path.join(SRC_PATH, 'assets'),
-        'components': path.join(SRC_PATH, 'components'),
-      }
-    },
     plugins: [
-      // PLUGINS.hotModuleReplacementPluginConf(),
+      PLUGINS.hotModuleReplacementPluginConf(),
       // Pconf.compressionWebpackPluginConf(),
       // PLUGINS.commonsChunkPluginConf({
       //   name: 'vendors',
       //   filename: 'vendors.bundle.js'
       // }),
       // PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
-      PLUGINS.uglifyJsPluginConf(),
       // new ExtractTextPlugin("vue.style.bundle.css"),
-    ],
-    devServer: {
-      stats: {
-        cached: false,
-        colors: true
-      },
-      hot: true,
-      inline: true,
-      compress: true,
-      contentBase: '.',
-      port: 5050,
-      host: '0.0.0.0',
-      headers: {
-        "X-WEB-SERVER": "webpack-dev-server"
-      }
-    }
+      PLUGINS.uglifyJsPluginConf(),
+    ]
   }
-  // workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
+  workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
   return workflow;
 }
