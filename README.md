@@ -9,10 +9,10 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run debug
+http://127.0.0.1:5050/static/index.bundle.html
 
 # build for production with minification
-npm run build
+npm run online
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

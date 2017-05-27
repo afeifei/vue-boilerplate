@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import 'assets/css/pure.css';
-import 'assets/css/app.css';
+import 'static/css/pure.css';
+import 'static/css/app.css';
 import Layout from './components/layout';
 import router from './router';
 

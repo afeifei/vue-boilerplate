@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 17:15:48
+* @Last Modified time: 2017-05-27 18:25:31
 */
 let webpack = require('webpack');
 let path = require('path');
