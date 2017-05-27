@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 14:13:13
+* @Last Modified time: 2017-05-27 16:12:45
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -17,7 +17,7 @@ const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 const IS_DEV = (argv.env === 'development');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
   let workflow =  {
@@ -192,7 +192,7 @@ module.exports = function(env) {
           loader: 'url-loader',
           query: {
             limit: 8192,
-            name: './img/[name].[hash:7].[ext]'
+            name: './imgs/[name].[hash:7].[ext]'
           }
         },
 
@@ -208,17 +208,52 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      // split vendor js into its own file
+      new webpack.optimize.CommonsChunkPlugin({
+        name: 'vendor',
+        minChunks: function (module, count) {
+          // any required modules inside node_modules are extracted to vendor
+          return (
+            module.resource &&
+            /\.js$/.test(module.resource) &&
+            module.resource.indexOf(
+              path.join(__dirname, '../node_modules')
+            ) === 0
+          )
+        }
+      }),
+      PLUGINS.commonsChunkPluginConf({
+        name: 'vendor',
+        filename: "vendor.bundle.js",
+        minChunks: function (module, count) {
+          // any required modules inside node_modules are extracted to vendor
+          return (
+            module.resource &&
+            /\.js$/.test(module.resource) &&
+            module.resource.indexOf(
+              path.join(__dirname, '../node_modules')
+            ) === 0
+          )
+        }
+      }),
       PLUGINS.hotModuleReplacementPluginConf(),
       // Pconf.compressionWebpackPluginConf(),
-      // PLUGINS.commonsChunkPluginConf({
-      //   name: 'vendors',
-      //   filename: 'vendors.bundle.js'
-      // }),
-      // PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
       // new ExtractTextPlugin("vue.style.bundle.css"),
+      PLUGINS.friendlyErrorsPluginConf(),
       PLUGINS.uglifyJsPluginConf(),
+      PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
+      PLUGINS.commonsChunkPluginConf({
+        // extract webpack runtime and module common to its own file in order to
+        // prevent vendor hash from being updated whenever app bundle is updated
+        name: 'common',
+        filename: "common.bundle.js",
+      })
     ]
   }
-  workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
+
+  if(OPTIONS.htmlPluginOptions) {
+    workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
+  }
+
   return workflow;
 }

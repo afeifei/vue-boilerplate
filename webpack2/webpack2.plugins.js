@@ -2,11 +2,10 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-26 20:24:15
+* @Last Modified time: 2017-05-27 16:00:11
 */
 const webpack = require('webpack');
 const path = require('path');
-const moment = require('moment');
 const CleanPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -19,7 +18,7 @@ module.exports = {
   //为打包之后的各个文件添加说明头部
   'bannerPluginConf': function(options) {
     options = ObjectAssign({
-      banner: 'This file is last built at ' + moment().format('YYYY-MM-DD h:mm:ss'),
+      banner: 'This file is last built at ' + new Date(),
       raw: true,
       entryOnly: true
     }, options);
@@ -67,6 +66,21 @@ module.exports = {
 
   //definePlugin 会把定义的 string 变量插入到所有JS代码中
   'definePluginConf': function(options) {
+    // 字符串sringify处理
+    function stringifyString(obj) {
+      let keys = Object.keys(obj);
+      for(let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        let tmp = obj[key];
+        if(typeof tmp === 'string') {
+          obj[key] = JSON.stringify(tmp);
+        }else if(Object.prototype.toString.call(tmp) === '[object Object]') {
+          stringifyString(tmp);
+        }
+      }
+      return obj;
+    }
+    options = stringifyString(options);
     options = ObjectAssign({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
@@ -116,14 +130,23 @@ module.exports = {
 
   // options 支持数组
   'htmlWebPackPluginConf': function(options) {
-    if(Object.prototype.toString.call(options)=== '[object Array]') {
-      let plist = [];
-      for(let i = 0; i < options.length; i++) {
-        plist.push(new HtmlWebpackPlugin(ObjectAssign({}, options[i])));
-      }
-      return plist;
+    let defaultHtmlPluginOption = {
+      hash: true,
+      inject: true,
+      chunksSortMode: 'dependency',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        minifyCSS: true
+      },
+    };
+    let optionsList = options;
+    if(Object.prototype.toString.call(options) !== '[object Array]') {
+      optionsList = [options];
     }
-    return new HtmlWebpackPlugin(ObjectAssign({}, options))
+    return optionsList.map(function(p) {
+      return new HtmlWebpackPlugin(ObjectAssign({}, defaultHtmlPluginOption, p));
+    });
   },
 
   //最小分块大小，小于minChunkSize将不生成分块
@@ -132,7 +155,6 @@ module.exports = {
     return new webpack.optimize.MinChunkSizePlugin({
       minChunkSize: minChunkSize
     });
-
   },
 
   //noop plugin

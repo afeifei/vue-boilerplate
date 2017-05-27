@@ -2,13 +2,16 @@
   <div id="app" class="block">
     <h3 class="title">{{title}}</h3>
     <navbar></navbar>
+    <img src="../assets/img/200w.gif" height="200" width="200">
     <!-- 路由组件的容器 -->
     <router-view class="view"></router-view>
   </div>
+
 </template>
 
 <script>
 import navbar from 'components/common/navbar';
+console.log(ENV);
 
 export default {
   name: 'Layout',

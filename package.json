@@ -47,6 +47,7 @@
     "stylus": "~0.54.5",
     "stylus-loader": "~3.0.1",
     "transfer-webpack-plugin": "~0.1.4",
+    "url-loader": "~0.5.8",
     "vue-loader": "^10.0.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
