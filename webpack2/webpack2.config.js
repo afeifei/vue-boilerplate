@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:47:45
+* @Last Modified time: 2017-05-27 18:54:52
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -22,7 +22,7 @@ module.exports = function(env) {
     },
     devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
     output: {
-      path: `${ROOT_PATH}/dist/static/js`,
+      path: `${ROOT_PATH}/dist/static/js`, // 生成文件目录
       publicPath: IS_DEV ? '/static/' : '/static/js/', //dev-server
       filename: '[name].[hash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
@@ -201,7 +201,7 @@ module.exports = function(env) {
       IS_DEV ? PLUGINS.hotModuleReplacementPluginConf() : PLUGINS.noopPluginConf(),
       PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
       IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.transferWebpackPluginConf([{
-        from: 'static', to: '../../static'
+        from: 'static', to: '../../static' // to 默认为 output.path
       }], {root: ROOT_PATH}),
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
