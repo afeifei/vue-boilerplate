@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-26 19:36:52
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 15:58:05
+* @Last Modified time: 2017-05-27 16:40:06
 */
 const path = require('path');
 const argv = require('yargs').argv;
@@ -12,9 +12,8 @@ const ROOT_PATH = path.join(__dirname, '..');
 
 let htmlPluginOptions = [
   {
-    filename: `${ROOT_PATH}/index.bundle.html`,
-    title: 'Hello World',
-    template: `${ROOT_PATH}/index.html`,
+    filename: `${ROOT_PATH}/dist/index.html`,
+    template: `${ROOT_PATH}/template/index.html`,
     // chunks: ['common', 'index'],
     // chunksSortMode: function (chunk1, chunk2) {
         //https://github.com/jantimon/html-webpack-plugin/issues/481

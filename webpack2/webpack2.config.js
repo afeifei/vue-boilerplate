@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 16:12:45
+* @Last Modified time: 2017-05-27 16:48:53
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -26,8 +26,8 @@ module.exports = function(env) {
     },
     devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
     output: {
-      path: `${STATIC_PATH}`,
-      publicPath: '/static/',
+      path: `${ROOT_PATH}/dist/static`,
+      publicPath: '/static/', //dev-server
       filename: '[name].bundle.js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
@@ -208,8 +208,10 @@ module.exports = function(env) {
       ]
     },
     plugins: [
+      PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
+
       // split vendor js into its own file
-      new webpack.optimize.CommonsChunkPlugin({
+      PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
         minChunks: function (module, count) {
           // any required modules inside node_modules are extracted to vendor

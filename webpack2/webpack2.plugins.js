@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 16:00:11
+* @Last Modified time: 2017-05-27 16:48:48
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -171,9 +171,9 @@ module.exports = {
   },
 
   //文件拷贝插件
-  'transferWebpackPluginConf': function(froms, cwd) {
+  'transferWebpackPluginConf': function(froms, cwd, options) {
     froms = froms || [];
-    cwd = cwd || path.join(__dirname, 'dist');
+    cwd = cwd || path.join(options.root || __dirname, 'dist');
     return new TransferWebpackPlugin(froms, cwd);
   },
 
