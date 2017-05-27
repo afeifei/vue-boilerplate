@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-26 21:05:04
+* @Last Modified time: 2017-05-27 11:46:37
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -11,6 +11,7 @@ let OPTIONS = require('./webpack2.options.js');
 let PLUGINS = require('./webpack2.plugins.js');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const ROOT_PATH = path.join(__dirname, '..');
 const SRC_PATH = path.join(ROOT_PATH, 'src');
@@ -41,10 +42,22 @@ module.exports = function(env) {
           loader: 'eslint-loader'
         },
 
-        // vue 处理
+        // vue 解析
         {
           test: /\.vue$/,
-          loader: 'vue-loader'
+          loader: 'vue-loader',
+          options: {
+            extractCSS: true,
+            loaders: {
+              // css: ExtractTextPlugin.extract({
+              //   use: 'css-loader',
+              //   fallback: 'vue-style-loader',
+              //   // publicPath:
+              // }),
+              scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+            }
+          }
         },
 
         // babel 编译
@@ -55,7 +68,7 @@ module.exports = function(env) {
           loader: 'babel-loader'
         },
 
-        // json 处理
+        // json 解析
         {
           test: /\.json$/,
           loader: 'json-loader'
@@ -65,7 +78,6 @@ module.exports = function(env) {
         {
           test: /\.css$/,
           use: [
-            'vue-style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -77,7 +89,10 @@ module.exports = function(env) {
         {
           test: /\.less$/,
           use: [
-            //'vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: { sourceMap: IS_DEV ? true : false }
+            },
             {
               loader: 'less-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -89,7 +104,6 @@ module.exports = function(env) {
         {
           test: /\.sass$/,
           use: [
-            //'vue-style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -103,11 +117,27 @@ module.exports = function(env) {
           ]
         },
 
+        // stylus 解析
+        {
+          test: /\.stylus$/,
+          use: [
+            {
+              loader: 'css-loader',
+              options: { sourceMap: IS_DEV ? true : false }
+            },
+            {
+              loader: 'stylus-loader',
+              options: {
+                sourceMap: IS_DEV ? true : false
+              }
+            },
+          ]
+        },
+
         // postcss 解析
         {
           test: /\.scss$/,
           use: [
-            // 'vue-style-loader',
             {
               loader: 'css-loader',
               options: { sourceMap: IS_DEV ? true : false }
@@ -160,12 +190,13 @@ module.exports = function(env) {
     plugins: [
       // PLUGINS.hotModuleReplacementPluginConf(),
       // Pconf.compressionWebpackPluginConf(),
-      // PLUGINS.uglifyJsPluginConf(),
       // PLUGINS.commonsChunkPluginConf({
       //   name: 'vendors',
       //   filename: 'vendors.bundle.js'
       // }),
       // PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
+      PLUGINS.uglifyJsPluginConf(),
+      // new ExtractTextPlugin("vue.style.bundle.css"),
     ],
     devServer: {
       stats: {
