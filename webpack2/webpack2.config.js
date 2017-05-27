@@ -2,22 +2,18 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:25:31
+* @Last Modified time: 2017-05-27 18:47:45
 */
 let webpack = require('webpack');
 let path = require('path');
 let argv = require('yargs').argv;
 let OPTIONS = require('./webpack2.options.js');
 let PLUGINS = require('./webpack2.plugins.js');
-
 const ROOT_PATH = path.join(__dirname, '..');
 const SRC_PATH = path.join(ROOT_PATH, 'src');
 const STATIC_PATH = path.join(ROOT_PATH, 'static');
 const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 const IS_DEV = (argv.env === 'development');
-
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = function(env) {
   let workflow =  {
@@ -26,9 +22,8 @@ module.exports = function(env) {
     },
     devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
     output: {
-      path: `${ROOT_PATH}/dist/static`,
-      publicPath: '/static/', //dev-server
-      // filename: '[name].bundle.js',
+      path: `${ROOT_PATH}/dist/static/js`,
+      publicPath: IS_DEV ? '/static/' : '/static/js/', //dev-server
       filename: '[name].[hash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
@@ -71,16 +66,10 @@ module.exports = function(env) {
           test: /\.vue$/,
           loader: 'vue-loader',
           options: {
-            // extractCSS: true,
-            // loaders: {
-            //   css: ExtractTextPlugin.extract({
-            //     use: 'css-loader',
-            //     fallback: 'vue-style-loader',
-            //     // publicPath:
-            //   }),
-            //   scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-            //   sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
-            // }
+            loaders: {
+              scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+            }
           }
         },
 
@@ -209,9 +198,11 @@ module.exports = function(env) {
       ]
     },
     plugins: [
-      PLUGINS.hotModuleReplacementPluginConf(),
+      IS_DEV ? PLUGINS.hotModuleReplacementPluginConf() : PLUGINS.noopPluginConf(),
       PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
-      PLUGINS.transferWebpackPluginConf([{from: 'static'}], {root: ROOT_PATH}),
+      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.transferWebpackPluginConf([{
+        from: 'static', to: '../../static'
+      }], {root: ROOT_PATH}),
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
         filename: "vendor.[hash:8].js",
@@ -223,10 +214,8 @@ module.exports = function(env) {
           )
         }
       }),
-      // new ExtractTextPlugin("vue.style.bundle.css"),
-      // PLUGINS.uglifyJsPluginConf(),
+      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.uglifyJsPluginConf(),
       PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
-      // PLUGINS.compressionWebpackPluginConf(),
       PLUGINS.commonsChunkPluginConf({
         // extract webpack runtime and module common to its own file in order to
         // prevent vendor hash from being updated whenever app bundle is updated

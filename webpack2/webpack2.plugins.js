@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:28:45
+* @Last Modified time: 2017-05-27 18:49:32
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -131,7 +131,7 @@ module.exports = {
   // options 支持数组
   'htmlWebPackPluginConf': function(options) {
     let defaultHtmlPluginOption = {
-      hash: true,
+      //hash: true,
       inject: true,
       chunksSortMode: 'dependency',
       minify: {

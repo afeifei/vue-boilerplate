@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-26 19:36:52
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:23:36
+* @Last Modified time: 2017-05-27 18:48:03
 */
 const path = require('path');
 const argv = require('yargs').argv;
@@ -12,7 +12,7 @@ const ROOT_PATH = path.join(__dirname, '..');
 
 let htmlPluginOptions = [
   {
-    filename: 'index.bundle.html',
+    filename: IS_DEV ? 'index.bundle.html' : `${ROOT_PATH}/dist/index.html`,
     template: `${ROOT_PATH}/template/index.html`,
     // chunks: ['common', 'index'],
     // chunksSortMode: function (chunk1, chunk2) {
