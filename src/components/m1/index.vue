@@ -1,6 +1,6 @@
 <template>
   <div class="block">
-    <h3 class="title">{{title | global-filter('-suffix')}}</h3>
+    <h3 class="title">{{title | addSuffix('-suffix')}}</h3>
     <div>
       <p>{{title | uppercase }}</p>
       <p v-html="rawHtml"></p>

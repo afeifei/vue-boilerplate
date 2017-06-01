@@ -12,5 +12,7 @@
 </script>
 
 <style scoped>
-
+  li {
+    font-size: 16px;
+  }
 </style>
