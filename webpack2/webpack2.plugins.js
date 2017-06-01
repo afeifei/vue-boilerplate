@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 18:49:32
+* @Last Modified time: 2017-06-01 11:45:08
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -68,6 +68,7 @@ module.exports = {
   'definePluginConf': function(options) {
     // 字符串sringify处理
     function stringifyString(obj) {
+      obj = obj || {};
       let keys = Object.keys(obj);
       for(let i = 0; i < keys.length; i++) {
         let key = keys[i];
