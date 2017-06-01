@@ -25,6 +25,13 @@ export default {
   methods: {
   },
   mounted () {
+    // Vue.http.get('/test');
+    // this.$http.get('/someUrl').then(response => {
+    //    // success callback
+    // }, response => {
+    //    // error callback
+    // });
+
     // 使用Bus总线监听孙子组件的事件
     this.$root.$data.bus.$on('busM41Btn2', (evt) => {
       console.log('Root监听到总线事件', evt);

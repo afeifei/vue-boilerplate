@@ -36,4 +36,3 @@ new Vue({
   },
   render: h => h(Layout)
 })
-
