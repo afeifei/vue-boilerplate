@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 10:02:45
+* @Last Modified time: 2017-06-01 11:45:37
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -226,7 +226,7 @@ module.exports = function(env) {
       }),
 
       // css提取
-      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.extractTextPluginConf('style.bundle.css'),
+      PLUGINS.extractTextPluginConf('style.bundle.css'),
 
       // 文件压缩
       IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.uglifyJsPluginConf(),
