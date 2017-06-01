@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 09:57:43
+* @Last Modified time: 2017-06-01 10:02:45
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -75,15 +75,17 @@ module.exports = function(env) {
               scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
             }
-          }
+          },
+          include: [SRC_PATH],
+          exclude: [MODULES_PATH],
         },
 
         // babel 编译
         {
           test: /\.(j|e)s$/,
+          loader: 'babel-loader',
           include: [SRC_PATH],
-          exclude: [MODULES_PATH],
-          loader: 'babel-loader'
+          exclude: [MODULES_PATH]
         },
 
         // json 解析
@@ -131,9 +133,7 @@ module.exports = function(env) {
             },
             {
               loader: 'sass-loader',
-              options: {
-                sourceMap: IS_DEV ? true : false
-              }
+              options: { sourceMap: IS_DEV ? true : false }
             },
           ]
         },
@@ -149,9 +149,7 @@ module.exports = function(env) {
             },
             {
               loader: 'stylus-loader',
-              options: {
-                sourceMap: IS_DEV ? true : false
-              }
+              options: { sourceMap: IS_DEV ? true : false }
             },
           ]
         },
