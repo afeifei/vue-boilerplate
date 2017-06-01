@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
 import 'static/css/pure.css';
 import 'static/css/app.css';
 import Layout from './components/layout';
@@ -22,6 +23,9 @@ Object.keys(filters).forEach((key) => {
 
 // 加载路由
 Vue.use(VueRouter);
+
+// 加载vue-source
+Vue.use(VueResource);
 
 // 挂载到根节点
 new Vue({
