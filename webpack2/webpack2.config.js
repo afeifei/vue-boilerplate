@@ -2,53 +2,34 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 11:45:37
+* @Last Modified time: 2017-06-01 14:44:15
 */
 let webpack = require('webpack');
 let path = require('path');
-let argv = require('yargs').argv;
+const OPTIONS = require('./webpack2.options.js');
+const PLUGINS = require('./webpack2.plugins.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-let OPTIONS = require('./webpack2.options.js');
-let PLUGINS = require('./webpack2.plugins.js');
-const ROOT_PATH = path.join(__dirname, '..');
-const SRC_PATH = path.join(ROOT_PATH, 'src');
-const STATIC_PATH = path.join(ROOT_PATH, 'static');
-const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
-const IS_DEV = (argv.env === 'development');
+const IS_DEV = OPTIONS.IS_DEV;
 
 module.exports = function(env) {
+  //const IS_DEV = (env.ENV || 'development') === 'development';
   let workflow =  {
     entry: {
-      index: `${SRC_PATH}/app.js`
+      index: OPTIONS.entry
     },
-    devtool: IS_DEV ? 'cheap-module-eval-source-map' : 'hidden-source-map',
+    devtool: IS_DEV ? 'cheap-module-eval-source-map' : (OPTIONS.sourceMap ? 'source-map' : 'hidden-source-map'),
     output: {
-      path: `${ROOT_PATH}/dist/static/js`, // 生成文件目录
-      publicPath: IS_DEV ? '/static/' : '/static/js/', //dev-server
+      path: OPTIONS.path, // 生成文件目录
+      publicPath: OPTIONS.publicPath, //dev-server public
       filename: '[name].[hash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
     resolve: {
       extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
       alias: {
-        'static': STATIC_PATH,
-        'assets': path.join(SRC_PATH, 'assets'),
-        'components': path.join(SRC_PATH, 'components'),
-      }
-    },
-    devServer: {
-      stats: {
-        cached: false,
-        colors: true
-      },
-      hot: true,
-      inline: true,
-      compress: true,
-      contentBase: '.',
-      port: 5050,
-      host: '0.0.0.0',
-      headers: {
-        "X-WEB-SERVER": "webpack-dev-server"
+        'static': OPTIONS.STATIC_PATH,
+        'assets': path.join(OPTIONS.SRC_PATH, 'assets'),
+        'components': path.join(OPTIONS.SRC_PATH, 'components'),
       }
     },
     module: {
@@ -58,8 +39,8 @@ module.exports = function(env) {
           enforce: 'pre',
           test: /\.(j|e)s$|\.vue$/,
           loader: 'eslint-loader',
-          include: [SRC_PATH],
-          exclude: [MODULES_PATH],
+          include: [OPTIONS.SRC_PATH],
+          exclude: [OPTIONS.MODULES_PATH],
         },
 
         // vue 解析
@@ -68,24 +49,24 @@ module.exports = function(env) {
           loader: 'vue-loader',
           options: {
             loaders: {
-              css: ExtractTextPlugin.extract({
-                fallbackLoader: 'vue-style-loader',
-                loader: 'css-loader?minimize=true'
-              }),
+              css: OPTIONS.extractCSS ? ExtractTextPlugin.extract({
+                fallback: 'vue-style-loader',
+                loader: `css-loader?minimize=true${OPTIONS.sourceMap ? '&sourceMap' : ''}`
+              }) : 'vue-style-loader!css-loader',
               scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
             }
           },
-          include: [SRC_PATH],
-          exclude: [MODULES_PATH],
+          include: [OPTIONS.SRC_PATH],
+          exclude: [OPTIONS.MODULES_PATH],
         },
 
         // babel 编译
         {
           test: /\.(j|e)s$/,
           loader: 'babel-loader',
-          include: [SRC_PATH],
-          exclude: [MODULES_PATH]
+          include: [OPTIONS.SRC_PATH],
+          exclude: [OPTIONS.MODULES_PATH]
         },
 
         // json 解析
@@ -97,11 +78,11 @@ module.exports = function(env) {
         // css 解析
         {
           test: /\.css$/,
-          use: [
+          loader: [
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false, minimize: true }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false, minimize: true }
             }
           ]
         },
@@ -109,15 +90,15 @@ module.exports = function(env) {
         // less 解析
         {
           test: /\.less$/,
-          use: [
+          loader: [
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
             {
               loader: 'less-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             }
           ]
         },
@@ -125,15 +106,15 @@ module.exports = function(env) {
         // sass 解析
         {
           test: /\.sass$/,
-          use: [
+          loader: [
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
             {
               loader: 'sass-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
           ]
         },
@@ -141,15 +122,15 @@ module.exports = function(env) {
         // stylus 解析
         {
           test: /\.stylus$/,
-          use: [
+          loader: [
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
             {
               loader: 'stylus-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
           ]
         },
@@ -157,16 +138,16 @@ module.exports = function(env) {
         // postcss 解析
         {
           test: /\.scss$/,
-          use: [
+          loader: [
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: IS_DEV ? true : false }
+              options: { sourceMap: OPTIONS.sourceMap ? true : false }
             },
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: IS_DEV ? true : false,
+                sourceMap: OPTIONS.sourceMap ? true : false,
                 plugins: function() {
                   return [
                     require('cssnano'),
@@ -201,17 +182,6 @@ module.exports = function(env) {
       ]
     },
     plugins: [
-      // 热加载
-      IS_DEV ? PLUGINS.hotModuleReplacementPluginConf() : PLUGINS.noopPluginConf(),
-
-      // 清理文件
-      PLUGINS.cleanPluginConf('dist', {root: ROOT_PATH}),
-
-      // 静态资源文件拷贝
-      // IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.transferWebpackPluginConf([{
-      //   from: 'static', to: '../../static' // to 默认为 output.path
-      // }], {root: ROOT_PATH}),
-
       // vendor提取
       PLUGINS.commonsChunkPluginConf({
         name: 'vendor',
@@ -220,19 +190,10 @@ module.exports = function(env) {
           return (
             module.resource &&
             /\.js$/.test(module.resource) &&
-            module.resource.indexOf(path.join(ROOT_PATH, 'node_modules')) === 0
+            module.resource.indexOf(path.join(OPTIONS.ROOT_PATH, 'node_modules')) === 0
           )
         }
       }),
-
-      // css提取
-      PLUGINS.extractTextPluginConf('style.bundle.css'),
-
-      // 文件压缩
-      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.uglifyJsPluginConf(),
-
-      // 环境变量注入
-      PLUGINS.definePluginConf(OPTIONS.definePluginOptions),
 
       // common 提取
       PLUGINS.commonsChunkPluginConf({
@@ -244,9 +205,54 @@ module.exports = function(env) {
     ]
   }
 
-  // html生成
-  if(OPTIONS.htmlPluginOptions) {
-    workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
+  if(IS_DEV) {
+    // 热加载
+    workflow.plugins.push(PLUGINS.hotModuleReplacementPluginConf());
+
+    //devServer
+    workflow.devServer = {
+      stats: {
+        cached: false,
+        colors: true
+      },
+      hot: true,
+      inline: true,
+      compress: true,
+      contentBase: '.',
+      port: OPTIONS.port || 5050,
+      host: '0.0.0.0',
+      headers: {
+        "X-WEB-SERVER": "webpack-dev-server"
+      }
+    }
+  }else {
+    // 清理文件
+    workflow.plugins.push(PLUGINS.cleanPluginConf('dist', {root: OPTIONS.ROOT_PATH}));
+
+    // 静态资源文件拷贝
+    workflow.plugins.push(PLUGINS.transferWebpackPluginConf([{
+      from: 'static', to: '../../static' // to 默认为 output.path
+    }], {root: OPTIONS.ROOT_PATH}));
+  }
+
+  // css 抽取
+  if(OPTIONS.extractCSS) {
+    workflow.plugins.push(PLUGINS.extractTextPluginConf('style.bundle.css'));
+  }
+
+  // 文件压缩
+  if(OPTIONS.uglify) {
+   workflow.plugins.push(PLUGINS.uglifyJsPluginConf());
+  }
+
+  // 环境变量注入
+  if(OPTIONS.inject) {
+    workflow.plugins.push(PLUGINS.definePluginConf(OPTIONS.inject));
+  }
+
+  // 模板html
+  if(OPTIONS.template && OPTIONS.template.length) {
+    Array.prototype.push.apply(workflow.plugins, PLUGINS.htmlWebPackPluginConf(OPTIONS.template));
   }
 
   return workflow;
