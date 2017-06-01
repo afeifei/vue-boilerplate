@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-27 19:30:20
+* @Last Modified time: 2017-06-01 09:57:43
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -21,7 +21,7 @@ module.exports = function(env) {
     entry: {
       index: `${SRC_PATH}/app.js`
     },
-    devtool: IS_DEV ? 'inline-source-map' : 'cheap-module-source-map',
+    devtool: IS_DEV ? 'cheap-module-eval-source-map' : 'hidden-source-map',
     output: {
       path: `${ROOT_PATH}/dist/static/js`, // 生成文件目录
       publicPath: IS_DEV ? '/static/' : '/static/js/', //dev-server
@@ -69,7 +69,7 @@ module.exports = function(env) {
           options: {
             loaders: {
               css: ExtractTextPlugin.extract({
-                fallbackLoader: 'vue-style-loader?sourceMap=false',
+                fallbackLoader: 'vue-style-loader',
                 loader: 'css-loader?minimize=true'
               }),
               scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
@@ -187,7 +187,7 @@ module.exports = function(env) {
           loader: 'url-loader',
           query: {
             limit: 8192,
-            name: './imgs/[name].[hash:7].[ext]'
+            name: './img/[name].[hash:7].[ext]'
           }
         },
 
@@ -197,7 +197,7 @@ module.exports = function(env) {
           loader: 'url-loader',
           query: {
             limit: 8192,
-            name: './fonts/[name].[hash:7].[ext]'
+            name: './font/[name].[hash:7].[ext]'
           }
         }
       ]
@@ -228,8 +228,7 @@ module.exports = function(env) {
       }),
 
       // css提取
-      // IS_DEV ? PLUGINS.noopPluginConf() :
-      PLUGINS.extractTextPluginConf('style.bundle.css'),
+      IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.extractTextPluginConf('style.bundle.css'),
 
       // 文件压缩
       IS_DEV ? PLUGINS.noopPluginConf() : PLUGINS.uglifyJsPluginConf(),
@@ -247,6 +246,7 @@ module.exports = function(env) {
     ]
   }
 
+  // html生成
   if(OPTIONS.htmlPluginOptions) {
     workflow.plugins = workflow.plugins.concat(PLUGINS.htmlWebPackPluginConf(OPTIONS.htmlPluginOptions));
   }

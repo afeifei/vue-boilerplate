@@ -5,11 +5,8 @@
   "author": "lushijie <lushijie1218@126.com>",
   "private": true,
   "scripts": {
-    "dev": "node webpack/dev.js",
-    "release": "node webpack/release.js",
-    "lint": "eslint --ext .js,.vue src",
-    "debug": "webpack-dev-server --config=./webpack2/webpack2.config.js --progress --env=development",
-    "online": "webpack --config=./webpack2/webpack2.config.js --progress --env=production"
+    "dev": "webpack-dev-server --config=./webpack2/webpack2.config.js --progress --env=development",
+    "pub": "webpack --config=./webpack2/webpack2.config.js --progress --env=production"
   },
   "dependencies": {
     "vue": "^2.1.0",
