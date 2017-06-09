@@ -5,6 +5,7 @@
   "author": "lushijie <lushijie1218@126.com>",
   "private": true,
   "scripts": {
+    "start": "npm run dev",
     "dev": "webpack-dev-server --config=./webpack2/webpack2.config.js --progress --env.ENV=development",
     "pub": "webpack --config=./webpack2/webpack2.config.js --progress --env.ENV=production"
   },
@@ -46,7 +47,6 @@
     "stylus-loader": "~3.0.1",
     "transfer-webpack-plugin": "~0.1.4",
     "url-loader": "~0.5.8",
-    "vue-loader": "~10.0.0",
     "vue-style-loader": "~1.0.0",
     "vue-template-compiler": "~2.1.0",
     "webpack": "~2.4.1",
