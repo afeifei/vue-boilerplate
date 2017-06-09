@@ -799,6 +799,11 @@
       "resolved": "http://registry.npm.qiwoo.org/decamelize/download/decamelize-1.2.0.tgz",
       "dev": true
     },
+    "decompress-response": {
+      "version": "3.3.0",
+      "from": "decompress-response@>=3.2.0 <4.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/decompress-response/download/decompress-response-3.3.0.tgz"
+    },
     "deep-extend": {
       "version": "0.4.2",
       "from": "deep-extend@>=0.4.0 <0.5.0",
@@ -898,6 +903,11 @@
       "from": "domutils@>=1.5.1 <2.0.0",
       "resolved": "http://registry.npm.qiwoo.org/domutils/download/domutils-1.6.2.tgz",
       "dev": true
+    },
+    "duplexer3": {
+      "version": "0.1.4",
+      "from": "duplexer3@>=0.1.4 <0.2.0",
+      "resolved": "http://registry.npm.taobao.org/duplexer3/download/duplexer3-0.1.4.tgz"
     },
     "ecc-jsbn": {
       "version": "0.1.1",
@@ -1057,26 +1067,6 @@
       "from": "extglob@>=0.3.1 <0.4.0",
       "resolved": "http://registry.npm.qiwoo.org/extglob/download/extglob-0.3.2.tgz",
       "dev": true
-    },
-    "extract-text-webpack-plugin": {
-      "version": "2.1.0",
-      "from": "extract-text-webpack-plugin@>=2.1.0 <2.2.0",
-      "resolved": "http://registry.npm.qiwoo.org/extract-text-webpack-plugin/download/extract-text-webpack-plugin-2.1.0.tgz",
-      "dev": true,
-      "dependencies": {
-        "async": {
-          "version": "2.4.1",
-          "from": "async@>=2.1.2 <3.0.0",
-          "resolved": "http://registry.npm.qiwoo.org/async/download/async-2.4.1.tgz",
-          "dev": true
-        },
-        "loader-utils": {
-          "version": "1.1.0",
-          "from": "loader-utils@>=1.0.2 <2.0.0",
-          "resolved": "http://registry.npm.qiwoo.org/loader-utils/download/loader-utils-1.1.0.tgz",
-          "dev": true
-        }
-      }
     },
     "extsprintf": {
       "version": "1.0.2",
@@ -2059,6 +2049,11 @@
       "resolved": "http://registry.npm.qiwoo.org/get-stdin/download/get-stdin-4.0.1.tgz",
       "dev": true
     },
+    "get-stream": {
+      "version": "3.0.0",
+      "from": "get-stream@>=3.0.0 <4.0.0",
+      "resolved": "http://registry.npm.taobao.org/get-stream/download/get-stream-3.0.0.tgz"
+    },
     "getpass": {
       "version": "0.1.7",
       "from": "getpass@>=0.1.1 <0.2.0",
@@ -2104,6 +2099,11 @@
           "dev": true
         }
       }
+    },
+    "got": {
+      "version": "7.0.0",
+      "from": "got@>=7.0.0 <8.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/got/download/got-7.0.0.tgz"
     },
     "graceful-fs": {
       "version": "4.1.11",
@@ -2434,11 +2434,15 @@
       "resolved": "http://registry.npm.qiwoo.org/is-number/download/is-number-2.1.0.tgz",
       "dev": true
     },
+    "is-object": {
+      "version": "1.0.1",
+      "from": "is-object@>=1.0.1 <2.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/is-object/download/is-object-1.0.1.tgz"
+    },
     "is-plain-obj": {
       "version": "1.1.0",
       "from": "is-plain-obj@>=1.0.0 <2.0.0",
-      "resolved": "http://registry.npm.qiwoo.org/is-plain-obj/download/is-plain-obj-1.1.0.tgz",
-      "dev": true
+      "resolved": "http://registry.npm.qiwoo.org/is-plain-obj/download/is-plain-obj-1.1.0.tgz"
     },
     "is-plain-object": {
       "version": "2.0.1",
@@ -2457,6 +2461,16 @@
       "from": "is-primitive@>=2.0.0 <3.0.0",
       "resolved": "http://registry.npm.qiwoo.org/is-primitive/download/is-primitive-2.0.0.tgz",
       "dev": true
+    },
+    "is-retry-allowed": {
+      "version": "1.1.0",
+      "from": "is-retry-allowed@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npm.taobao.org/is-retry-allowed/download/is-retry-allowed-1.1.0.tgz"
+    },
+    "is-stream": {
+      "version": "1.1.0",
+      "from": "is-stream@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npm.taobao.org/is-stream/download/is-stream-1.1.0.tgz"
     },
     "is-svg": {
       "version": "2.1.0",
@@ -2505,6 +2519,11 @@
       "from": "isstream@>=0.1.2 <0.2.0",
       "resolved": "http://registry.npm.qiwoo.org/isstream/download/isstream-0.1.2.tgz",
       "dev": true
+    },
+    "isurl": {
+      "version": "1.0.0-alpha5",
+      "from": "isurl@>=1.0.0-alpha5 <2.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/isurl/download/isurl-1.0.0-alpha5.tgz"
     },
     "jodid25519": {
       "version": "1.0.2",
@@ -2623,26 +2642,6 @@
       "from": "less@>=2.7.2 <2.8.0",
       "resolved": "http://registry.npm.qiwoo.org/less/download/less-2.7.2.tgz",
       "dev": true
-    },
-    "less-loader": {
-      "version": "4.0.3",
-      "from": "less-loader@>=4.0.3 <4.1.0",
-      "resolved": "http://registry.npm.qiwoo.org/less-loader/download/less-loader-4.0.3.tgz",
-      "dev": true,
-      "dependencies": {
-        "clone": {
-          "version": "2.1.1",
-          "from": "clone@>=2.1.1 <3.0.0",
-          "resolved": "http://registry.npm.qiwoo.org/clone/download/clone-2.1.1.tgz",
-          "dev": true
-        },
-        "loader-utils": {
-          "version": "1.1.0",
-          "from": "loader-utils@>=1.1.0 <2.0.0",
-          "resolved": "http://registry.npm.qiwoo.org/loader-utils/download/loader-utils-1.1.0.tgz",
-          "dev": true
-        }
-      }
     },
     "load-json-file": {
       "version": "1.1.0",
@@ -2772,6 +2771,11 @@
       "resolved": "http://registry.npm.qiwoo.org/loud-rejection/download/loud-rejection-1.6.0.tgz",
       "dev": true
     },
+    "lowercase-keys": {
+      "version": "1.0.0",
+      "from": "lowercase-keys@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npm.taobao.org/lowercase-keys/download/lowercase-keys-1.0.0.tgz"
+    },
     "lru-cache": {
       "version": "4.0.2",
       "from": "lru-cache@>=4.0.1 <5.0.0",
@@ -2863,6 +2867,11 @@
       "from": "mime-types@>=2.1.7 <2.2.0",
       "resolved": "http://registry.npm.qiwoo.org/mime-types/download/mime-types-2.1.15.tgz",
       "dev": true
+    },
+    "mimic-response": {
+      "version": "1.0.0",
+      "from": "mimic-response@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/mimic-response/download/mimic-response-1.0.0.tgz"
     },
     "minimalistic-assert": {
       "version": "1.0.0",
@@ -3135,6 +3144,16 @@
       "from": "osenv@>=0.1.4 <0.2.0",
       "resolved": "http://registry.npm.qiwoo.org/osenv/download/osenv-0.1.4.tgz",
       "dev": true
+    },
+    "p-cancelable": {
+      "version": "0.2.0",
+      "from": "p-cancelable@>=0.2.0 <0.3.0",
+      "resolved": "http://registry.npm.qiwoo.org/p-cancelable/download/p-cancelable-0.2.0.tgz"
+    },
+    "p-timeout": {
+      "version": "1.1.1",
+      "from": "p-timeout@>=1.1.1 <2.0.0",
+      "resolved": "http://registry.npm.qiwoo.org/p-timeout/download/p-timeout-1.1.1.tgz"
     },
     "pako": {
       "version": "0.2.9",
@@ -3829,8 +3848,7 @@
     "prepend-http": {
       "version": "1.0.4",
       "from": "prepend-http@>=1.0.0 <2.0.0",
-      "resolved": "http://registry.npm.qiwoo.org/prepend-http/download/prepend-http-1.0.4.tgz",
-      "dev": true
+      "resolved": "http://registry.npm.qiwoo.org/prepend-http/download/prepend-http-1.0.4.tgz"
     },
     "preserve": {
       "version": "0.2.0",
@@ -4118,8 +4136,7 @@
     "safe-buffer": {
       "version": "5.0.1",
       "from": "safe-buffer@>=5.0.1 <6.0.0",
-      "resolved": "http://registry.npm.qiwoo.org/safe-buffer/download/safe-buffer-5.0.1.tgz",
-      "dev": true
+      "resolved": "http://registry.npm.qiwoo.org/safe-buffer/download/safe-buffer-5.0.1.tgz"
     },
     "sass-graph": {
       "version": "2.2.4",
@@ -4456,20 +4473,6 @@
       "dev": true,
       "optional": true
     },
-    "style-loader": {
-      "version": "0.18.1",
-      "from": "style-loader@>=0.18.1 <0.19.0",
-      "resolved": "http://registry.npm.qiwoo.org/style-loader/download/style-loader-0.18.1.tgz",
-      "dev": true,
-      "dependencies": {
-        "loader-utils": {
-          "version": "1.1.0",
-          "from": "loader-utils@>=1.0.2 <2.0.0",
-          "resolved": "http://registry.npm.qiwoo.org/loader-utils/download/loader-utils-1.1.0.tgz",
-          "dev": true
-        }
-      }
-    },
     "stylus": {
       "version": "0.54.5",
       "from": "stylus@>=0.54.5 <0.55.0",
@@ -4546,6 +4549,11 @@
       "from": "tcomb@>=2.5.1 <3.0.0",
       "resolved": "http://registry.npm.qiwoo.org/tcomb/download/tcomb-2.7.0.tgz",
       "dev": true
+    },
+    "timed-out": {
+      "version": "4.0.1",
+      "from": "timed-out@>=4.0.0 <5.0.0",
+      "resolved": "http://registry.npm.taobao.org/timed-out/download/timed-out-4.0.1.tgz"
     },
     "timers-browserify": {
       "version": "2.0.2",
@@ -4688,6 +4696,11 @@
         }
       }
     },
+    "url-parse-lax": {
+      "version": "1.0.0",
+      "from": "url-parse-lax@>=1.0.0 <2.0.0",
+      "resolved": "http://registry.npm.taobao.org/url-parse-lax/download/url-parse-lax-1.0.0.tgz"
+    },
     "util": {
       "version": "0.10.3",
       "from": "util@>=0.10.3 <0.11.0",
@@ -4768,87 +4781,9 @@
       "resolved": "http://registry.npm.qiwoo.org/vue/download/vue-2.1.10.tgz"
     },
     "vue-resource": {
-      "version": "1.3.3",
-      "from": "vue-resource@1.3.3",
-      "resolved": "http://registry.npm.taobao.org/vue-resource/download/vue-resource-1.3.3.tgz",
-      "dependencies": {
-        "got": {
-          "version": "6.7.1",
-          "from": "got@6.7.1",
-          "resolved": "http://registry.npm.taobao.org/got/download/got-6.7.1.tgz",
-          "dependencies": {
-            "create-error-class": {
-              "version": "3.0.2",
-              "from": "create-error-class@3.0.2",
-              "resolved": "http://registry.npm.taobao.org/create-error-class/download/create-error-class-3.0.2.tgz",
-              "dependencies": {
-                "capture-stack-trace": {
-                  "version": "1.0.0",
-                  "from": "capture-stack-trace@1.0.0",
-                  "resolved": "http://registry.npm.taobao.org/capture-stack-trace/download/capture-stack-trace-1.0.0.tgz"
-                }
-              }
-            },
-            "duplexer3": {
-              "version": "0.1.4",
-              "from": "duplexer3@0.1.4",
-              "resolved": "http://registry.npm.taobao.org/duplexer3/download/duplexer3-0.1.4.tgz"
-            },
-            "get-stream": {
-              "version": "3.0.0",
-              "from": "get-stream@3.0.0",
-              "resolved": "http://registry.npm.taobao.org/get-stream/download/get-stream-3.0.0.tgz"
-            },
-            "is-redirect": {
-              "version": "1.0.0",
-              "from": "is-redirect@1.0.0",
-              "resolved": "http://registry.npm.taobao.org/is-redirect/download/is-redirect-1.0.0.tgz"
-            },
-            "is-retry-allowed": {
-              "version": "1.1.0",
-              "from": "is-retry-allowed@1.1.0",
-              "resolved": "http://registry.npm.taobao.org/is-retry-allowed/download/is-retry-allowed-1.1.0.tgz"
-            },
-            "is-stream": {
-              "version": "1.1.0",
-              "from": "is-stream@1.1.0",
-              "resolved": "http://registry.npm.taobao.org/is-stream/download/is-stream-1.1.0.tgz"
-            },
-            "lowercase-keys": {
-              "version": "1.0.0",
-              "from": "lowercase-keys@1.0.0",
-              "resolved": "http://registry.npm.taobao.org/lowercase-keys/download/lowercase-keys-1.0.0.tgz"
-            },
-            "safe-buffer": {
-              "version": "5.0.1",
-              "from": "safe-buffer@5.0.1",
-              "resolved": "http://registry.npm.taobao.org/safe-buffer/download/safe-buffer-5.0.1.tgz"
-            },
-            "timed-out": {
-              "version": "4.0.1",
-              "from": "timed-out@4.0.1",
-              "resolved": "http://registry.npm.taobao.org/timed-out/download/timed-out-4.0.1.tgz"
-            },
-            "unzip-response": {
-              "version": "2.0.1",
-              "from": "unzip-response@2.0.1",
-              "resolved": "http://registry.npm.taobao.org/unzip-response/download/unzip-response-2.0.1.tgz"
-            },
-            "url-parse-lax": {
-              "version": "1.0.0",
-              "from": "url-parse-lax@1.0.0",
-              "resolved": "http://registry.npm.taobao.org/url-parse-lax/download/url-parse-lax-1.0.0.tgz",
-              "dependencies": {
-                "prepend-http": {
-                  "version": "1.0.4",
-                  "from": "prepend-http@1.0.4",
-                  "resolved": "http://registry.npm.taobao.org/prepend-http/download/prepend-http-1.0.4.tgz"
-                }
-              }
-            }
-          }
-        }
-      }
+      "version": "1.3.4",
+      "from": "vue-resource@>=1.3.4 <1.4.0",
+      "resolved": "http://registry.npm.qiwoo.org/vue-resource/download/vue-resource-1.3.4.tgz"
     },
     "vue-router": {
       "version": "2.1.3",
