@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 14:44:15
+* @Last Modified time: 2017-06-09 10:03:26
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -17,7 +17,7 @@ module.exports = function(env) {
     entry: {
       index: OPTIONS.entry
     },
-    devtool: IS_DEV ? 'cheap-module-eval-source-map' : (OPTIONS.sourceMap ? 'source-map' : 'hidden-source-map'),
+    devtool: IS_DEV ? 'inline-source-map' : (OPTIONS.sourceMap ? 'source-map' : 'hidden-source-map'),
     output: {
       path: OPTIONS.path, // 生成文件目录
       publicPath: OPTIONS.publicPath, //dev-server public
