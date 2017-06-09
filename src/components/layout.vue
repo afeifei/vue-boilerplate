@@ -10,7 +10,7 @@
 
 <script>
 import navbar from 'components/common/navbar';
-console.log(ENV);
+console.lo1g(ENV);
 
 export default {
   name: 'Layout',
