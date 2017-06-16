@@ -2,11 +2,93 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:20:26
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-05-26 14:29:19
+* @Last Modified time: 2017-06-16 17:16:39
 */
+
+html,
 body {
-  padding: 20px;
+  font: 14px/1.5 '微软雅黑', '宋体', arial, sans-serif;
+  height: 100%;
+/*  min-height:100%;
+  _height:100%;*/
 }
+
+/*通用类*/
+.bold {
+  font-weight: 700;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix,
+.cls {
+  zoom: 1;
+}
+
+.clearfix:after,
+.cls:after {
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+  content: '';
+}
+
+.fa,
+.select-text-disabled {
+  user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+/*文字链接*/
+a {
+  text-decoration: none;
+  color: #2a3542;
+}
+
+a:link,
+a:visited {
+  color: #2a3542;
+}
+
+a:hover,
+a:active {
+  color: #21ab38;
+}
+
+/*IE11默认input样式*/
+/*input[type=text]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+input[type=text]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}*/
+
+/*::selection {
+  background-color: #39f;
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: #39f;
+  color: #fff;
+}*/
+
+
 .block {
   border: 1px solid #964;
   padding: 20px;

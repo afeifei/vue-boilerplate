@@ -2,11 +2,11 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-09 10:28:06
+* @Last Modified time: 2017-06-16 17:18:19
 */
 let webpack = require('webpack');
 let path = require('path');
-const OPTIONS = require('./webpack2.options.js');
+const OPTIONS = require('./webpack2.value.js');
 const PLUGINS = require('./webpack2.plugins.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const IS_DEV = OPTIONS.IS_DEV;
