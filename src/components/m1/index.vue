@@ -1,20 +1,32 @@
 <template>
   <div class="block">
+    <!-- 子组件 -->
     <Navbar />
+
     <!-- 带参数过滤器 -->
-    <h3 class="title">{{title | addSuffix('-suffix')}}</h3>
+    <h3 class="title">{{title | uppercase}}</h3>
+
     <div>
       <!-- 无参数过滤器 -->
-      <p>{{title | uppercase }}</p>
-      <p @click.prevent="testClick(11, $event)">@click 点击我</p>
+      <p>{{title | addSuffix('-suffix')}}</p>
+
+      <!-- 计算属性 -->
       <p>{{clickNumFace}}</p>
 
+      <!-- 事件点击 -->
+      <p @click.prevent="testClick(123, $event)" class="pure-button">@click 点击我</p>
+
+      <!-- 调用Model -->
+      <p @click.prevent="modelClick" class="pure-button">点击我</p>
+
+      <!-- 数组 -->
       <ul id="example-1">
         <li v-for="(item, index) in list">
           {{ index }} -- {{ item.id }} -- {{ item.name }}
         </li>
       </ul>
 
+      <!-- 对象 -->
       <ul id="example-2">
         <li v-for="(value, key) in obj">
           {{ key }} -- {{ value }}
@@ -27,6 +39,7 @@
 
 <script>
 import Navbar from 'components/common/navbar';
+import M1Model from 'models/m1';
 
 export default {
   name: 'M1Vue',
@@ -49,9 +62,13 @@ export default {
   },
   // 自定义方法
   methods: {
-    testClick (aa, evt) {
+    testClick(aa, evt) {
       console.log(aa, evt);
       this.clickNum ++;
+    },
+    modelClick() {
+      console.log(M1Model);
+      M1Model.insertDb();
     }
   },
   // 组件内过滤器
@@ -67,6 +84,7 @@ export default {
       return 'Total=' + this.clickNum;
     }
   },
+
   // 生命周期
   // beforeCreate,created
   // beforeMount,mounted
