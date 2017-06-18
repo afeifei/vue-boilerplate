@@ -5,8 +5,6 @@ import Layout from './components/layout';
 import router from './router';
 import filters from './filters';
 
-console.log('RUNTIME=', process.env.RUNTIME)
-
 // dev
 Vue.config.silent = false;
 Vue.config.devtools = true;
