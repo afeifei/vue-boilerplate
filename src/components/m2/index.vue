@@ -1,5 +1,6 @@
 <template>
   <div class="block">
+    <Navbar />
     <h3 class="title">{{title}}</h3>
     <div>
       <ul>
@@ -16,8 +17,13 @@
 </template>
 
 <script>
+import Navbar from 'components/common/navbar';
+
 export default {
   name: 'M2Vue',
+  components: {
+    Navbar
+  },
   data () {
     return {
       title: 'VueRouter 路由'

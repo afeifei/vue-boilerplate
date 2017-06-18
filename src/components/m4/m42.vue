@@ -2,8 +2,8 @@
   <div class="block">
     <h3 class="title">{{title}}</h3>
     <div>
-      <button @click="btn1Click">父级 v-on 监听 $emit</button>
-      <button @click="btn2Click">父级 $refs 监听 $emit</button>
+      <button class="pure-button" @click="btn1Click">父级 v-on 监听 $emit</button>
+      <button class="pure-button" @click="btn2Click">父级 $refs 监听 $emit</button>
     </div>
   </div>
 </template>
@@ -33,9 +33,6 @@ export default {
     this.$on('emitM42Btn2', (evt) => {
       console.log('自己监听到 emit 事件', evt);
     });
-    this.$root.$data.bus.$on('busM41Btn2', (evt) => {
-      console.log('M42监听到总线事件', evt);
-    })
   }
 }
 </script>

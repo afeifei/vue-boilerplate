@@ -1,18 +1,13 @@
 <template>
   <div class="block">
+    <Navbar />
+    <!-- 带参数过滤器 -->
     <h3 class="title">{{title | addSuffix('-suffix')}}</h3>
     <div>
+      <!-- 无参数过滤器 -->
       <p>{{title | uppercase }}</p>
-      <p v-html="rawHtml"></p>
-      <p :id="bindId">:id</p>
-      <p v-if="isShow">v-if</p>
-      <p v-else>v-if not show</p>
-
-      <p @click.prevent="testClick(11, $event)">@click</p>
+      <p @click.prevent="testClick(11, $event)">@click 点击我</p>
       <p>{{clickNumFace}}</p>
-      <p class="origin" :class="{active: isActive}">:class1</p>
-      <p :class="classObject">:class2</p>
-      <p :class="[activeClass, errorClass]">:class3</p>
 
       <ul id="example-1">
         <li v-for="(item, index) in list">
@@ -31,8 +26,13 @@
 </template>
 
 <script>
+import Navbar from 'components/common/navbar';
+
 export default {
   name: 'M1Vue',
+  components: {
+    Navbar
+  },
   data () {
     return {
       title: 'Vue 过滤器',
@@ -44,17 +44,7 @@ export default {
         a: 'aaa',
         b: 'bbb'
       },
-      rawHtml: '<p style="color: #f00">v-html</p>',
-      bindId: 'testp',
-      isShow: false,
-      clickNum: 0,
-      isActive: true,
-      classObject: {
-        active: true,
-        'text-danger': true
-      },
-      activeClass: 'active',
-      errorClass: 'text-danger'
+      clickNum: 0
     }
   },
   // 自定义方法
@@ -84,14 +74,21 @@ export default {
   // activated,deactivated
   // beforeDestroy,destroyed
   mounted() {
+    // Vue-resource 使用
+    // Vue.http.get('/test');
+    // this.$http.get('/someUrl').then(response => {
+    //    // success callback
+    // }, response => {
+    //    // error callback
+    // });
+
     this.$nextTick(function () {
-      // DOM Ready
-      // `this` 绑定到当前实例
+      // DOM Ready, `this` 绑定到当前实例
     })
   }
 }
 </script>
 
 <style scoped>
-
+  /*局部css*/
 </style>

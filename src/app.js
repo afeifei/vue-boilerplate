@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import 'static/css/pure.css';
-import 'static/css/app.css';
 import Layout from './components/layout';
 import router from './router';
 import filters from './filters';
+
+console.log('RUNTIME=', process.env.RUNTIME)
 
 // dev
 Vue.config.silent = false;

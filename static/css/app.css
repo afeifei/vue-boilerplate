@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:20:26
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-16 17:16:39
+* @Last Modified time: 2017-06-18 11:57:22
 */
 
 html,
@@ -18,6 +18,15 @@ body {
   font-weight: 700;
 }
 
+.txt-center {
+  text-align: center;
+}
+.txt-left {
+  text-align: left;
+}
+.txt-right {
+  text-align: right;
+}
 .fl {
   float: left;
 }
@@ -51,19 +60,21 @@ body {
 }
 
 /*文字链接*/
-a {
+a, .pure-link {
   text-decoration: none;
-  color: #2a3542;
+  color: #0366D6;
 }
 
 a:link,
 a:visited {
-  color: #2a3542;
+  color: #0366D6;
 }
 
 a:hover,
+.pure-link:hover,
 a:active {
-  color: #21ab38;
+  color: #0366D6;
+  text-decoration: underline;
 }
 
 /*IE11默认input样式*/
@@ -88,15 +99,13 @@ input[type=text]::-ms-reveal {
   color: #fff;
 }*/
 
-
 .block {
   border: 1px solid #964;
   padding: 20px;
+  margin-top: 20px;
   margin-bottom: 1px;
 }
-.title {
-  text-align: center;
-}
+
 .router-link-active {
   color: #a10;
 }

@@ -1,9 +1,17 @@
 <template>
-  <ul>
-    <li><router-link to="/m1">初始vue</router-link></li>
-    <li><router-link to="/m4">事件</router-link></li>
-    <li><router-link to="/m3">内容分发</router-link></li>
-    <li><router-link to="/m2">路由切换</router-link></li>
+  <ul class="clearfix">
+    <li>
+      <router-link to="/m1"><i class="fa fa-circle" aria-hidden="true"></i>初识vue</router-link>
+    </li>
+    <li>
+      <router-link to="/m2"><i class="fa fa-circle" aria-hidden="true"></i>路由切换</router-link>
+    </li>
+    <li>
+      <router-link to="/m3"><i class="fa fa-circle" aria-hidden="true"></i>内容分发</router-link>
+    </li>
+    <li>
+      <router-link to="/m4"><i class="fa fa-circle" aria-hidden="true"></i>事件</router-link>
+    </li>
   </ul>
 </template>
 
@@ -12,7 +20,12 @@
 </script>
 
 <style scoped>
+  ul {
+    margin-bottom: 40px;
+  }
   li {
+    float: left;
+    margin-right: 20px;
     font-size: 16px;
   }
 </style>

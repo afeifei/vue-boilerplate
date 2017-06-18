@@ -1,22 +1,14 @@
 <template>
   <div id="app" class="block">
-    <h3 class="title">{{title}}</h3>
-    <navbar></navbar>
+    <h3 class="title txt-center bold">{{title}}</h3>
     <!-- 路由组件的容器 -->
     <router-view class="view"></router-view>
   </div>
-
 </template>
 
 <script>
-import navbar from 'components/common/navbar';
-console.log(ENV);
-
 export default {
-  name: 'Layout',
-  components: {
-    navbar
-  },
+  name: 'LayoutVue',
   data () {
     return {
       title: 'Welcome to VUE\'s World'
@@ -25,15 +17,9 @@ export default {
   methods: {
   },
   mounted () {
-    // Vue.http.get('/test');
-    // this.$http.get('/someUrl').then(response => {
-    //    // success callback
-    // }, response => {
-    //    // error callback
-    // });
-
+    console.log('当前环境注入的变量', ENV);
     // 使用Bus总线监听孙子组件的事件
-    this.$root.$data.bus.$on('busM41Btn2', (evt) => {
+    this.$root.$data.bus.$on('updateChannel', (evt) => {
       console.log('Root监听到总线事件', evt);
     })
   }
@@ -41,7 +27,8 @@ export default {
 </script>
 
 <style scoped>
-  .test {
-    color: red;
+  /*局部 css*/
+  .title {
+    font-size: 24px;
   }
 </style>

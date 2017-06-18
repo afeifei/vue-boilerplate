@@ -1,5 +1,6 @@
 <template>
   <div class="block" ref="pp">
+    <Navbar />
     <h3 class="title">{{ title }}</h3>
     <div>
       <!-- 自定义 slot 分发 -->
@@ -16,12 +17,14 @@
 </template>
 
 <script>
+import Navbar from 'components/common/navbar';
 import M31 from 'components/m3/m31';
 
 export default {
   name: 'M3Vue',
   components: {
-    M31
+    M31,
+    Navbar
   },
   data () {
     return {
