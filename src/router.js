@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-18 13:37:55
+* @Last Modified time: 2017-06-18 18:40:08
 */
 import VueRouter from 'vue-router';
 
@@ -24,6 +24,8 @@ import M3 from './components/m3';
 import M4 from './components/m4';
 
 import M5 from './components/m5';
+
+import M6 from './components/m6';
 
 // 404 页面
 import NotFound from 'components/common/notfound';
@@ -92,6 +94,10 @@ let router = new VueRouter({
     {
       path: '/m5',
       component: M5
+    },
+    {
+      path: '/m6',
+      component: M6
     },
     {
       path: '*',
