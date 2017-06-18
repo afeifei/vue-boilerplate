@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-26 19:36:52
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 14:37:42
+* @Last Modified time: 2017-06-18 13:15:05
 */
 const path = require('path');
 const argv = require('yargs').argv;
@@ -15,7 +15,7 @@ const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 
 let htmlPluginOptions = [
   {
-    filename: IS_DEV ? 'index.bundle.html' : `${ROOT_PATH}/dist/index.html`,
+    filename: IS_DEV ? 'index.html' : '../index.html',
     template: `${ROOT_PATH}/template/index.html`,
     // chunks: ['common', 'index'],
     // chunksSortMode: function (chunk1, chunk2) {

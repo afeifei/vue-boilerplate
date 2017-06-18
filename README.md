@@ -10,7 +10,7 @@ npm install
 
 # serve with hot reload at localhost:5050
 npm run dev
-http://127.0.0.1:5050/static/index.bundle.html
+http://127.0.0.1:5050/static/index.html
 
 # build for production with minification
 npm run pub
