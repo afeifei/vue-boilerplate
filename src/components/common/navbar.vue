@@ -12,6 +12,12 @@
     <li>
       <router-link to="/m4"><i class="fa fa-circle" aria-hidden="true"></i>事件</router-link>
     </li>
+    <li>
+      <router-link to="/m5"><i class="fa fa-circle" aria-hidden="true"></i>slot 子组件</router-link>
+    </li>
+     <li>
+      <router-link to="/m6"><i class="fa fa-circle" aria-hidden="true"></i>render 函数</router-link>
+    </li>
   </ul>
 </template>
 
