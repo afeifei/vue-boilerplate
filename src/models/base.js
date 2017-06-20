@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-06-18 19:26:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 13:36:52
+* @Last Modified time: 2017-06-20 13:54:14
 */
 import Vue from 'vue';
 import Utils from 'utils';
@@ -12,19 +12,21 @@ import Utils from 'utils';
 export default class Base {
   constructor() {
     this.ENV = ENV;
+    this.API = this.ENV.API;
   }
   httpGet(url, options) {
-    console.log(this.ENV.API);
     console.log('http get method');
-    if(!options.preventTrim) {
+    url = `${this.API}${url}`;
+    if(options && !options.preventTrim) {
       options.body = Utils.getTrimedResult(options.body);
       delete options.preventTrim;
     }
-    retrun Vue.http.get(url, options);
+    return Vue.http.get(url, options);
   }
   httpPost(url, options) {
     console.log('http post method');
-    if(!options.preventTrim) {
+    url = `${this.API}${url}`;
+    if(options && !options.preventTrim) {
       options.body = Utils.getTrimedResult(options.body);
       delete options.preventTrim;
     }
@@ -32,7 +34,8 @@ export default class Base {
   }
   httpJsonp(url, options) {
     console.log('http jsonp method');
-    if(!options.preventTrim) {
+    url = `${this.API}${url}`;
+    if(options && !options.preventTrim) {
       options.body = Utils.getTrimedResult(options.body);
       delete options.preventTrim;
     }
