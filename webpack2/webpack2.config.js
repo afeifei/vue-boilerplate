@@ -2,36 +2,36 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 14:08:50
+* @Last Modified time: 2017-06-20 14:14:35
 */
-let webpack = require('webpack');
-let path = require('path');
-const OPTIONS = require('./webpack2.value.js');
+const webpack = require('webpack');
+const path = require('path');
+const CONFIGS = require('./webpack2.env.js');
 const PLUGINS = require('./webpack2.plugins.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const IS_DEV = OPTIONS.IS_DEV;
+const IS_DEV = CONFIGS.IS_DEV;
 
 module.exports = function(env) {
   //const IS_DEV = (env.ENV || 'development') === 'development';
   let workflow =  {
     entry: {
-      index: OPTIONS.entry
+      index: CONFIGS.entry
     },
-    devtool: IS_DEV ? 'inline-source-map' : (OPTIONS.sourceMap ? 'source-map' : 'hidden-source-map'),
+    devtool: IS_DEV ? 'inline-source-map' : (CONFIGS.sourceMap ? 'source-map' : 'hidden-source-map'),
     output: {
-      path: OPTIONS.path, // 生成文件目录
-      publicPath: OPTIONS.publicPath, //dev-server public
+      path: CONFIGS.path, // 生成文件目录
+      publicPath: CONFIGS.publicPath, //dev-server public
       filename: '[name].[hash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
     },
     resolve: {
       extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
       alias: {
-        'static': path.join(OPTIONS.ROOT_PATH, 'static'),
-        'libs': path.join(OPTIONS.ROOT_PATH, 'src/libs'),
-        'utils': path.join(OPTIONS.ROOT_PATH, 'src/utils'),
-        'models': path.join(OPTIONS.ROOT_PATH, 'src/models'),
-        'components': path.join(OPTIONS.ROOT_PATH, 'src/components'),
+        'static': path.join(CONFIGS.ROOT_PATH, 'static'),
+        'libs': path.join(CONFIGS.ROOT_PATH, 'src/libs'),
+        'utils': path.join(CONFIGS.ROOT_PATH, 'src/utils'),
+        'models': path.join(CONFIGS.ROOT_PATH, 'src/models'),
+        'components': path.join(CONFIGS.ROOT_PATH, 'src/components'),
       }
     },
     module: {
@@ -41,8 +41,8 @@ module.exports = function(env) {
           enforce: 'pre',
           test: /\.(j|e)s$|\.vue$/,
           loader: 'eslint-loader',
-          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
-          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
+          include: [path.join(CONFIGS.ROOT_PATH, 'src')],
+          exclude: [path.join(CONFIGS.ROOT_PATH, 'node_modules')],
         },
 
         // vue 解析
@@ -51,24 +51,24 @@ module.exports = function(env) {
           loader: 'vue-loader',
           options: {
             loaders: {
-              css: OPTIONS.extractCSS ? ExtractTextPlugin.extract({
+              css: CONFIGS.extractCSS ? ExtractTextPlugin.extract({
                 fallback: 'vue-style-loader',
-                loader: `css-loader?minimize=true${OPTIONS.sourceMap ? '&sourceMap' : ''}`
+                loader: `css-loader?minimize=true${CONFIGS.sourceMap ? '&sourceMap' : ''}`
               }) : 'vue-style-loader!css-loader',
               scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
             }
           },
-          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
-          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
+          include: [path.join(CONFIGS.ROOT_PATH, 'src')],
+          exclude: [path.join(CONFIGS.ROOT_PATH, 'node_modules')],
         },
 
         // babel 编译
         {
           test: /\.(j|e)s$/,
           loader: 'babel-loader',
-          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
-          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
+          include: [path.join(CONFIGS.ROOT_PATH, 'src')],
+          exclude: [path.join(CONFIGS.ROOT_PATH, 'node_modules')],
         },
 
         // json 解析
@@ -84,7 +84,7 @@ module.exports = function(env) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false, minimize: true }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false, minimize: true }
             }
           ]
         },
@@ -96,11 +96,11 @@ module.exports = function(env) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
             {
               loader: 'less-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             }
           ]
         },
@@ -112,11 +112,11 @@ module.exports = function(env) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
             {
               loader: 'sass-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
           ]
         },
@@ -128,11 +128,11 @@ module.exports = function(env) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
             {
               loader: 'stylus-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
           ]
         },
@@ -144,12 +144,12 @@ module.exports = function(env) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: { sourceMap: OPTIONS.sourceMap ? true : false }
+              options: { sourceMap: CONFIGS.sourceMap ? true : false }
             },
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: OPTIONS.sourceMap ? true : false,
+                sourceMap: CONFIGS.sourceMap ? true : false,
                 plugins: function() {
                   return [
                     require('cssnano'),
@@ -192,7 +192,7 @@ module.exports = function(env) {
           return (
             module.resource &&
             /\.js$/.test(module.resource) &&
-            module.resource.indexOf(path.join(OPTIONS.ROOT_PATH, 'node_modules')) === 0
+            module.resource.indexOf(path.join(CONFIGS.ROOT_PATH, 'node_modules')) === 0
           )
         }
       }),
@@ -221,7 +221,7 @@ module.exports = function(env) {
       inline: true,
       compress: true,
       contentBase: '.',
-      port: OPTIONS.port || 5050,
+      port: CONFIGS.port || 5050,
       host: '0.0.0.0',
       headers: {
         "X-WEB-SERVER": "webpack-dev-server"
@@ -232,32 +232,32 @@ module.exports = function(env) {
     // path: `${ROOT_PATH}/dist/static/js`,
 
     // 清理文件
-    // workflow.plugins.push(PLUGINS.cleanPluginConf('dist', {root: OPTIONS.ROOT_PATH}));
+    // workflow.plugins.push(PLUGINS.cleanPluginConf('dist', {root: CONFIGS.ROOT_PATH}));
 
     // 静态资源文件拷贝
     // workflow.plugins.push(PLUGINS.transferWebpackPluginConf([{
     //   from: 'static', to: '../../static' // to 默认为 output.path
-    // }], {root: OPTIONS.ROOT_PATH}));
+    // }], {root: CONFIGS.ROOT_PATH}));
   }
 
   // css 抽取
-  if(OPTIONS.extractCSS) {
+  if(CONFIGS.extractCSS) {
     workflow.plugins.push(PLUGINS.extractTextPluginConf('style.bundle.css'));
   }
 
   // 文件压缩
-  if(OPTIONS.uglify) {
+  if(CONFIGS.uglify) {
    workflow.plugins.push(PLUGINS.uglifyJsPluginConf());
   }
 
   // 环境变量注入
-  if(OPTIONS.inject) {
-    workflow.plugins.push(PLUGINS.definePluginConf(OPTIONS.inject));
+  if(CONFIGS.inject) {
+    workflow.plugins.push(PLUGINS.definePluginConf(CONFIGS.inject));
   }
 
   // 模板html
-  if(OPTIONS.template && OPTIONS.template.length) {
-    Array.prototype.push.apply(workflow.plugins, PLUGINS.htmlWebPackPluginConf(OPTIONS.template));
+  if(CONFIGS.template && CONFIGS.template.length) {
+    Array.prototype.push.apply(workflow.plugins, PLUGINS.htmlWebPackPluginConf(CONFIGS.template));
   }
 
   return workflow;
