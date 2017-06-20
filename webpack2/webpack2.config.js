@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-18 19:37:11
+* @Last Modified time: 2017-06-20 09:43:50
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -27,8 +27,9 @@ module.exports = function(env) {
     resolve: {
       extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
       alias: {
-        'libs': path.join(OPTIONS.SRC_PATH, 'libs'),
         'static': OPTIONS.STATIC_PATH,
+        'libs': path.join(OPTIONS.SRC_PATH, 'libs'),
+        'utils': path.join(OPTIONS.SRC_PATH, 'utils'),
         'models': path.join(OPTIONS.SRC_PATH, 'models'),
         'components': path.join(OPTIONS.SRC_PATH, 'components'),
       }
