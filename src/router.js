@@ -2,14 +2,12 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-18 18:40:08
+* @Last Modified time: 2017-06-20 10:52:52
 */
 import VueRouter from 'vue-router';
-
-// 模块1 基础
+import Utils from 'utils';
 import M1 from './components/m1';
 
-// 模块2, 路由切换与自路由
 import M2 from './components/m2';
 import M21 from './components/m2/m21';
 import M22 from './components/m2/m22';
@@ -17,14 +15,9 @@ import M23 from './components/m2/m23';
 import M24 from './components/m2/m24';
 import M25 from './components/m2/m25';
 
-// 模块3，solt分发
 import M3 from './components/m3';
-
-// 模块4，事件处理
 import M4 from './components/m4';
-
 import M5 from './components/m5';
-
 import M6 from './components/m6';
 
 // 404 页面
@@ -107,8 +100,13 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('全局 beforeEach');
-  next();
+  if(to.meta.requiresAuth) {
+    Utils.checkAuth().then(() => {
+      next();
+    })
+  }else {
+    next();
+  }
 });
 
 router.afterEach(route => {

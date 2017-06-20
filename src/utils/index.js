@@ -2,11 +2,21 @@
 * @Author: lushijie
 * @Date:   2017-06-20 09:34:17
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 10:39:38
+* @Last Modified time: 2017-06-20 10:53:17
 */
 import querystring from 'querystring';
 
 let utils = {
+  /**
+   * vue-router canActive 权限验证
+   */
+  checkAuth() {
+    // return new Promise((resolve, reject) => {
+    //   resolve(true)
+    // })
+    return Promise.resolve(true);
+  },
+
   /**
    * 返回解析赋值的结果
    getDestructResult(['houseId', 'item:item1'], this.state);
@@ -34,25 +44,27 @@ let utils = {
 
   /**
    * 把对象拼接成url参数
+   * getQueryJoin({name: 'lushijie'})
   */
   getQueryJoin(queryObject) {
     return querystring.stringify(queryObject);
   },
 
   /**
-    获取trimed之后的对象
+    * 获取trimed之后的数据 data可以为字符串、对象、数组或者嵌套形式
+    * getTrimedResult({name: '  lushijie', address: [' shangdong' , ' jinan']})
    */
-  getTrimedData(data) {
+  getTrimedResult(data) {
     if(typeof data === 'string') {
       return data.trim();
     }else if(Object.prototype.toString.call(data) === '[object Object]') {
       Object.keys(data).forEach((key) => {
-        data[key] = this.getTrimedData(data[key]);
+        data[key] = this.getTrimedResult(data[key]);
       })
       return data;
     }else if(Object.prototype.toString.call(data) === '[object Array]') {
       return data.map((ele) => {
-        return this.getTrimedData(ele);
+        return this.getTrimedResult(ele);
       });
     }else {
       return data;
