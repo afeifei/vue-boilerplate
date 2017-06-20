@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-06-18 19:26:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 13:54:14
+* @Last Modified time: 2017-06-20 13:56:16
 */
 import Vue from 'vue';
 import Utils from 'utils';
@@ -14,6 +14,7 @@ export default class Base {
     this.ENV = ENV;
     this.API = this.ENV.API;
   }
+
   httpGet(url, options) {
     console.log('http get method');
     url = `${this.API}${url}`;
@@ -23,6 +24,7 @@ export default class Base {
     }
     return Vue.http.get(url, options);
   }
+
   httpPost(url, options) {
     console.log('http post method');
     url = `${this.API}${url}`;
@@ -32,6 +34,7 @@ export default class Base {
     }
     return Vue.http.post(url, data, options);
   }
+
   httpJsonp(url, options) {
     console.log('http jsonp method');
     url = `${this.API}${url}`;
