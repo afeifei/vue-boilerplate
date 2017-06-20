@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 09:43:50
+* @Last Modified time: 2017-06-20 14:08:50
 */
 let webpack = require('webpack');
 let path = require('path');
@@ -27,11 +27,11 @@ module.exports = function(env) {
     resolve: {
       extensions: ['.vue', '.es', '.js', '.css', '.scss', '.json'],
       alias: {
-        'static': OPTIONS.STATIC_PATH,
-        'libs': path.join(OPTIONS.SRC_PATH, 'libs'),
-        'utils': path.join(OPTIONS.SRC_PATH, 'utils'),
-        'models': path.join(OPTIONS.SRC_PATH, 'models'),
-        'components': path.join(OPTIONS.SRC_PATH, 'components'),
+        'static': path.join(OPTIONS.ROOT_PATH, 'static'),
+        'libs': path.join(OPTIONS.ROOT_PATH, 'src/libs'),
+        'utils': path.join(OPTIONS.ROOT_PATH, 'src/utils'),
+        'models': path.join(OPTIONS.ROOT_PATH, 'src/models'),
+        'components': path.join(OPTIONS.ROOT_PATH, 'src/components'),
       }
     },
     module: {
@@ -41,8 +41,8 @@ module.exports = function(env) {
           enforce: 'pre',
           test: /\.(j|e)s$|\.vue$/,
           loader: 'eslint-loader',
-          include: [OPTIONS.SRC_PATH],
-          exclude: [OPTIONS.MODULES_PATH],
+          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
+          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
         },
 
         // vue 解析
@@ -59,16 +59,16 @@ module.exports = function(env) {
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
             }
           },
-          include: [OPTIONS.SRC_PATH],
-          exclude: [OPTIONS.MODULES_PATH],
+          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
+          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
         },
 
         // babel 编译
         {
           test: /\.(j|e)s$/,
           loader: 'babel-loader',
-          include: [OPTIONS.SRC_PATH],
-          exclude: [OPTIONS.MODULES_PATH]
+          include: [path.join(OPTIONS.ROOT_PATH, 'src')],
+          exclude: [path.join(OPTIONS.ROOT_PATH, 'node_modules')],
         },
 
         // json 解析
@@ -228,13 +228,16 @@ module.exports = function(env) {
       }
     }
   }else {
+    // 配合使用生成新的静态资源目录
+    // path: `${ROOT_PATH}/dist/static/js`,
+
     // 清理文件
-    workflow.plugins.push(PLUGINS.cleanPluginConf('dist', {root: OPTIONS.ROOT_PATH}));
+    // workflow.plugins.push(PLUGINS.cleanPluginConf('dist', {root: OPTIONS.ROOT_PATH}));
 
     // 静态资源文件拷贝
-    workflow.plugins.push(PLUGINS.transferWebpackPluginConf([{
-      from: 'static', to: '../../static' // to 默认为 output.path
-    }], {root: OPTIONS.ROOT_PATH}));
+    // workflow.plugins.push(PLUGINS.transferWebpackPluginConf([{
+    //   from: 'static', to: '../../static' // to 默认为 output.path
+    // }], {root: OPTIONS.ROOT_PATH}));
   }
 
   // css 抽取

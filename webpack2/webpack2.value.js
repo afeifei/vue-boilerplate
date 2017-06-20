@@ -2,16 +2,16 @@
 * @Author: lushijie
 * @Date:   2017-05-26 19:36:52
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-18 19:29:33
+* @Last Modified time: 2017-06-20 14:10:05
 */
 const path = require('path');
 const argv = require('yargs').argv;
 const ENV = argv.env.ENV || 'development';
 const IS_DEV = ENV === 'development';
 const ROOT_PATH = path.join(__dirname, '..');
-const SRC_PATH = path.join(ROOT_PATH, 'src');
-const STATIC_PATH = path.join(ROOT_PATH, 'static');
-const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
+// const SRC_PATH = path.join(ROOT_PATH, 'src');
+// const STATIC_PATH = path.join(ROOT_PATH, 'static');
+// const MODULES_PATH = path.join(ROOT_PATH, 'node_modules');
 
 let htmlPluginOptions = [
   {
@@ -29,11 +29,12 @@ let CONFIG = {
   common: {
     IS_DEV: IS_DEV,
     ROOT_PATH: ROOT_PATH,
-    SRC_PATH: SRC_PATH,
-    STATIC_PATH: STATIC_PATH,
-    MODULES_PATH: MODULES_PATH,
-    path: `${ROOT_PATH}/dist/static/js`,
-    entry: `${SRC_PATH}/app.js`
+    // SRC_PATH: SRC_PATH,
+    // STATIC_PATH: STATIC_PATH,
+    // MODULES_PATH: MODULES_PATH,
+    // path: `${ROOT_PATH}/dist/static/js`,
+    path: `${ROOT_PATH}/static/js`,
+    entry: `${ROOT_PATH}/src/app.js`
   },
   development: {
     port: 5050,
