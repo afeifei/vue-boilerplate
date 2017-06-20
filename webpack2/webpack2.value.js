@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-26 19:36:52
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 14:10:05
+* @Last Modified time: 2017-06-20 14:11:15
 */
 const path = require('path');
 const argv = require('yargs').argv;
@@ -29,9 +29,6 @@ let CONFIG = {
   common: {
     IS_DEV: IS_DEV,
     ROOT_PATH: ROOT_PATH,
-    // SRC_PATH: SRC_PATH,
-    // STATIC_PATH: STATIC_PATH,
-    // MODULES_PATH: MODULES_PATH,
     // path: `${ROOT_PATH}/dist/static/js`,
     path: `${ROOT_PATH}/static/js`,
     entry: `${ROOT_PATH}/src/app.js`
