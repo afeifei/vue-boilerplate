@@ -2,16 +2,20 @@
   <div class="block">
     M6
     <LoadingBar :id="'loading-bar1'" :customClass="'loading-bar'" :progress="progress" :onProgressDone="handleProgressDone"/>
+
+    <Pagination/>
   </div>
 </template>
 
 <script>
 import LoadingBar from './child.js';
+import Pagination from 'components/common/pagination';
 
 export default {
   name: 'M6Vue',
   components: {
-    LoadingBar
+    LoadingBar,
+    Pagination
   },
   data () {
     return {
