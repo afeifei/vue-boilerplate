@@ -3,7 +3,7 @@
     M6
     <LoadingBar :id="'loading-bar1'" :customClass="'loading-bar'" :progress="progress" :onProgressDone="handleProgressDone"/>
 
-    <Pagination/>
+    <Pagination v-bind="pageInfo"/>
   </div>
 </template>
 
@@ -20,12 +20,22 @@ export default {
   data () {
     return {
       name: 'lushijie',
-      progress: 90
+      progress: 90,
+      pageInfo: {
+        totalPage: 100,
+        currentPage: 50,
+        onPageClick: function(currentPage, pageSize, evt) {
+          console.log(currentPage, pageSize, evt);
+        }
+      }
     }
   },
   methods: {
     handleProgressDone(args, event) {
       console.log('handleProgressDone', args, event);
+    },
+    onPageClick(currentPage, pageSize, evt) {
+      console.log(currentPage, pageSize, evt);
     }
   },
   mounted() {

@@ -30,8 +30,8 @@ module.exports = {
   },
 
   render(h) {
-    console.warn('h= ', h);
-    console.warn('this= ',this);
+    console.log('h= ', h);
+    console.log('this= ',this);
     let {id, customClass, progress, onProgressDone} = this;
     this.clickBtn();
     return(

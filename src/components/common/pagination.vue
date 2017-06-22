@@ -1,6 +1,6 @@
 <template>
   <div class="vue-pagination">
-    <a :class="{current: currentPage == item, normal: (currentPage != item && item != ellipsis), ellipsis: item == ellipsis}" v-for="item in calcPage" @click="pageClick(item, $event)">{{ item }}</a>
+    <a :class="{current: currentPage == current, normal: (currentPage != current && current != ellipsis), ellipsis: current == ellipsis}" v-for="current in calcPage" @click="handlePageClick(current, $event)">{{ current }}</a>
   </div>
 </template>
 
@@ -13,11 +13,13 @@
       currentPage: {type: Number, default: 10},
       pagePad: {type: Number, default: 2},
       pageSize: {type: Number, default: 10},
-      preText: {type: String, default: '前一页'},
-      nextText: {type: String, default: '后一页'},
-      firstText: {type: String, default: '首页'},
-      lastText: {type: String, default: '尾页'}
+      // preText: {type: String, default: '前一页'},
+      // nextText: {type: String, default: '后一页'},
+      // firstText: {type: String, default: '首页'},
+      // lastText: {type: String, default: '尾页'},
+      onPageClick: {type: Function, default: function(){}}
     },
+
     components: {
 
     },
@@ -49,7 +51,7 @@
         //倒数第二个为...
         for(let i = 0; i <= leftPageNum; i++) {
           if(i === leftPageNum - 1) {
-            frontList.unshift('...');
+            frontList.unshift(this.ellipsis);
           }else {
             frontList.unshift( this.currentPage - i);
           }
@@ -58,14 +60,14 @@
         //倒数第二个为...
         for(let i = 1; i <= rightPageNum; i++) {
           if(i === rightPageNum - 1) {
-            endList.push('...');
+            endList.push(this.ellipsis);
           }else {
             endList.push( this.currentPage + i);
           }
         }
 
         //前半部分...处理
-        let frontEllipsisPos = frontList.indexOf('...');
+        let frontEllipsisPos = frontList.indexOf(this.ellipsis);
         if(frontEllipsisPos > -1) {
           if(frontList[frontEllipsisPos -1] === 1) {
             frontList[frontEllipsisPos] = 2;
@@ -75,7 +77,7 @@
         }
 
         //后半部分...处理
-        let endEllipsisPos = endList.indexOf('...');
+        let endEllipsisPos = endList.indexOf(this.ellipsis);
         if(endEllipsisPos > -1) {
           if(endList[endEllipsisPos + 1] === this.totalPage) {
             endList[endEllipsisPos] = this.totalPage - 1;
@@ -87,8 +89,11 @@
       }
     },
     methods:{
-      pageClick: function(page, evt){
-        console.log(page, evt);
+      handlePageClick: function(current, evt){
+        if(current !== this.ellipsis) {
+          this.currentPage = current;
+          this.onPageClick(this.currentPage, this.pageSize, evt);
+        }
       }
     }
   }
@@ -116,6 +121,9 @@
   }
   .vue-pagination a.ellipsis {
     cursor: default;
+  }
+  .vue-pagination a.ellipsis:hover {
+    text-decoration: none;
   }
   .vue-pagination a.disabled {
     cursor: default;
