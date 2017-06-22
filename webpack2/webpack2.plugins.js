@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:01:28
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-01 19:05:06
+* @Last Modified time: 2017-06-22 09:44:38
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -11,6 +11,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const WebpackBrowserPlugin = require('webpack-browser-plugin');
 const ObjectAssign = Object.assign;
 
 module.exports = {
@@ -185,5 +186,8 @@ module.exports = {
       except: ['$super', '$', 'exports', 'require']
     }, options);
     return new webpack.optimize.UglifyJsPlugin(options);
+  },
+  'webpackBrowserPluginConf': function(options) {
+    return new WebpackBrowserPlugin(options);
   }
 }

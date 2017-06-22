@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-20 14:14:35
+* @Last Modified time: 2017-06-22 09:45:03
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -208,6 +208,11 @@ module.exports = function(env) {
   }
 
   if(IS_DEV) {
+    workflow.plugins.splice(0,0, PLUGINS.webpackBrowserPluginConf({
+      url: 'http://127.0.0.1',
+      publicPath: '/static/index.html'
+    }));
+
     // 热加载
     workflow.plugins.push(PLUGINS.hotModuleReplacementPluginConf());
 
