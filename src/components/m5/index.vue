@@ -1,6 +1,6 @@
 <template>
   <div class="block">
-    M5
+    <Navbar />
     <Menu :propMenu="name" v-on:update="handleUpdate">
       <div slot="header">header</div>
       <div slot="footer">footer</div>
@@ -10,10 +10,13 @@
 
 <script>
 import Menu from './menu'
+import Navbar from 'components/common/navbar';
+
 export default {
   name: 'M5Vue',
   components: {
-    Menu
+    Menu,
+    Navbar
   },
   data () {
     return {
