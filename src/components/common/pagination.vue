@@ -1,6 +1,8 @@
 <template>
   <div class="vue-pagination">
+    <a class="pre" :class="[currentPage == 1 ? 'disabled' : '']" @click="handlePreClick($event)">{{ preText }}</a>
     <a :class="{current: currentPage == current, normal: (currentPage != current && current != ellipsis), ellipsis: current == ellipsis}" v-for="current in calcPage" @click="handlePageClick(current, $event)">{{ current }}</a>
+    <a class="next" :class="[currentPage == totalPage ? 'disabled' : '']" @click="handleNextClick($event)">{{ nextText }}</a>
   </div>
 </template>
 
@@ -13,15 +15,9 @@
       currentPage: {type: Number, default: 10},
       pagePad: {type: Number, default: 2},
       pageSize: {type: Number, default: 10},
-      // preText: {type: String, default: '前一页'},
-      // nextText: {type: String, default: '后一页'},
-      // firstText: {type: String, default: '首页'},
-      // lastText: {type: String, default: '尾页'},
+      preText: {type: String, default: '前一页'},
+      nextText: {type: String, default: '后一页'},
       onPageClick: {type: Function, default: function(){}}
-    },
-
-    components: {
-
     },
     computed: {
       calcPage: function () {
@@ -94,6 +90,18 @@
           this.currentPage = current;
           this.onPageClick(this.currentPage, this.pageSize, evt);
         }
+      },
+      handleNextClick: function(evt) {
+        if(this.currentPage < this.totalPage) {
+          this.currentPage ++;
+          this.onPageClick(this.currentPage, this.pageSize, evt);
+        }
+      },
+      handlePreClick: function(evt) {
+        if(this.currentPage > 1) {
+          this.currentPage --;
+          this.onPageClick(this.currentPage, this.pageSize, evt);
+        }
       }
     }
   }
@@ -103,6 +111,12 @@
   .vue-pagination {
     text-align: center;
     padding: 20px 0;
+    user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
   }
   .vue-pagination a{
     float: left;
