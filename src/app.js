@@ -1,9 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
-import Layout from './components/layout';
+import Layout from 'components/layout';
 import router from './router';
 import filters from './filters';
+import VeeValidate, {Validator} from 'vee-validate';
+import VeeMessage from 'validators/message';
+import VeeConfig from 'validators/config';
+import VeeRules from 'validators/rules';
 
 // dev
 Vue.config.silent = false;
@@ -18,6 +22,17 @@ Vue.config.errorHandler = function (err, vm) {
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
 });
+
+// 验证中文支持
+Validator.updateDictionary({ en: { messages: VeeMessage } });
+
+// 全局自定义校验器
+Object.keys(VeeRules).forEach((key) => {
+  Validator.extend(key, VeeRules[key])
+});
+
+// 表单验证
+Vue.use(VeeValidate, VeeConfig);
 
 // 加载路由
 Vue.use(VueRouter);

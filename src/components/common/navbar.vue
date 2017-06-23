@@ -21,6 +21,9 @@
     <li>
       <router-link to="/m7"><i class="fa fa-superpowers" aria-hidden="true"></i>m7 分页组件</router-link>
     </li>
+    <li>
+      <router-link to="/m8"><i class="fa fa-superpowers" aria-hidden="true"></i>m8 表单验证</router-link>
+    </li>
   </ul>
 </template>
 

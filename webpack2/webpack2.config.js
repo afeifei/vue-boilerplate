@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-05-12 14:00:40
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-22 09:45:03
+* @Last Modified time: 2017-06-23 11:03:00
 */
 const webpack = require('webpack');
 const path = require('path');
@@ -32,6 +32,7 @@ module.exports = function(env) {
         'utils': path.join(CONFIGS.ROOT_PATH, 'src/utils'),
         'models': path.join(CONFIGS.ROOT_PATH, 'src/models'),
         'components': path.join(CONFIGS.ROOT_PATH, 'src/components'),
+        'validators': path.join(CONFIGS.ROOT_PATH, 'src/validators'),
       }
     },
     module: {

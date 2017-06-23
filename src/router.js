@@ -2,7 +2,7 @@
 * @Author: lushijie
 * @Date:   2017-01-17 14:32:02
 * @Last Modified by:   lushijie
-* @Last Modified time: 2017-06-23 09:42:52
+* @Last Modified time: 2017-06-23 11:31:39
 */
 import VueRouter from 'vue-router';
 import Utils from 'utils';
@@ -25,6 +25,7 @@ let router = new VueRouter({
     require('components/m5/router'),
     require('components/m6/router'),
     require('components/m7/router'),
+    require('components/m8/router'),
     {
       path: '*',
       component: NotFound
