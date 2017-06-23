@@ -4,10 +4,12 @@ import VueResource from 'vue-resource';
 import Layout from 'components/layout';
 import router from './router';
 import filters from './filters';
+import Notifications from 'vue-notification';
 import VeeValidate, {Validator} from 'vee-validate';
 import VeeMessage from 'validators/message';
 import VeeConfig from 'validators/config';
 import VeeRules from 'validators/rules';
+
 
 // dev
 Vue.config.silent = false;
@@ -17,6 +19,9 @@ Vue.config.devtools = true;
 Vue.config.errorHandler = function (err, vm) {
   console.log(err, vm);
 };
+
+// notifications
+Vue.use(Notifications);
 
 // 全局自定义过滤器
 Object.keys(filters).forEach((key) => {

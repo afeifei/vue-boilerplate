@@ -24,6 +24,9 @@
     <li>
       <router-link to="/m8"><i class="fa fa-superpowers" aria-hidden="true"></i>m8 表单验证</router-link>
     </li>
+    <li>
+      <router-link to="/m9"><i class="fa fa-superpowers" aria-hidden="true"></i>m9 notification</router-link>
+    </li>
   </ul>
 </template>
 
