@@ -1,7 +1,7 @@
 <template>
   <div class="vue-pagination">
     <a class="pre" :class="[currentPage == 1 ? 'disabled' : '']" @click="handlePreClick($event)">{{ preText }}</a>
-    <a :class="{current: currentPage == current, normal: (currentPage != current && current != ellipsis), ellipsis: current == ellipsis}" v-for="current in calcPage" @click="handlePageClick(current, $event)">{{ current }}</a>
+    <a :class="{current: currentPage == item, normal: (currentPage != item && item != ellipsis), ellipsis: item == ellipsis}" v-for="item in calcPage" @click="handlePageClick(item, $event)">{{ item }}</a>
     <a class="next" :class="[currentPage == totalPage ? 'disabled' : '']" @click="handleNextClick($event)">{{ nextText }}</a>
   </div>
 </template>
