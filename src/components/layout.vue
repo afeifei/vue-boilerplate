@@ -3,7 +3,7 @@
     <h3 class="title txt-center bold">{{title}}</h3>
     <!-- 路由组件的容器 -->
     <router-view class="view"></router-view>
-    <notifications position="bottom center"/>
+    <notifications position="top center"/>
   </div>
 </template>
 
@@ -42,5 +42,6 @@ export default {
       right: 0;
       margin: 0 auto;
       top: 30px;
+      bottom: auto;
   }
 </style>

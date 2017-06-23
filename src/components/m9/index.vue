@@ -24,7 +24,7 @@ export default {
       this.$notify({
         title: 'Important message',
         type: 'warning',
-        duration: 300000,
+        duration: 3000,
         text: 'Hello user! This is a notification!'
       });
     }
