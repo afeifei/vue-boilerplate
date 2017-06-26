@@ -27,6 +27,9 @@
     <li>
       <router-link to="/m9"><i class="fa fa-superpowers" aria-hidden="true"></i>m9 notification</router-link>
     </li>
+    <li>
+      <router-link to="/m10"><i class="fa fa-superpowers" aria-hidden="true"></i>m10 上传</router-link>
+    </li>
   </ul>
 </template>
 
